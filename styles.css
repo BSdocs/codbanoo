@@ -1,0 +1,779 @@
+/* فونت‌ها */
+@font-face {
+    font-family: 'Samim';
+    src: url('Samim.woff2') format('woff2'),
+         url('Samim.woff') format('woff');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Tanha';
+    src: url('Tanha.woff2') format('woff2'),
+         url('Tanha.woff') format('woff');
+    font-display: swap;
+}
+
+/* پایه */
+:root {
+    --green: #24826b;
+    --green-soft: #e7f3f0;
+    --green-dark: #155344;
+    --bg: #f5f7f8;
+    --text-main: #222;
+    --text-muted: #666;
+    --radius-lg: 24px;
+    --shadow-soft: 0 16px 40px rgba(0,0,0,0.06);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text-main);
+    font-family: 'Tanha', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+
+    /* ممنوعیت انتخاب متن در کل سایت */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Samim', 'Tanha', system-ui;
+    margin: 0;
+}
+
+.container {
+    width: min(1160px, 100% - 48px);
+    margin-inline: auto;
+}
+
+/* اجازه انتخاب برای شماره و ایمیل */
+.contact-phone,
+.contact-email {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* لینک‌ها */
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none; /* جلوگیری از underline روی همه دکمه‌ها و لینک‌ها */
+}
+
+/* دکمه‌ها */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.8rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    white-space: nowrap;
+}
+.btn-primary {
+    background: var(--green);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(36,130,107,0.25);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(36,130,107,0.32);
+}
+.btn-ghost {
+    background: #fff;
+    border-color: rgba(0,0,0,0.07);
+    color: var(--text-main);
+}
+.btn-ghost:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+.btn.full-width {
+    width: 100%;
+}
+
+/* هدر */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(245,247,248,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.75rem;
+}
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.logo-icon {
+    width: 32px;
+    height: 32px;
+}
+.logo-text {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.nav-desktop {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+}
+.nav-desktop a {
+    position: relative;
+    padding-block: 0.25rem;
+}
+.nav-desktop a::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--green);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease;
+}
+.nav-desktop a:hover::after {
+    transform: scaleX(1);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* همبرگر */
+.hamburger {
+    display: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 0;
+}
+.hamburger span {
+    width: 18px;
+    height: 2px;
+    background: #222;
+    border-radius: 999px;
+    transition: transform 0.25s ease, opacity 0.25s ease, translate 0.25s ease;
+}
+.hamburger.close span:nth-child(1),
+.hamburger.close span:nth-child(2) {
+    width: 18px;
+}
+.hamburger.close span:nth-child(1) {
+    transform: rotate(45deg) translate(2px, 2px);
+}
+.hamburger.close span:nth-child(2) {
+    transform: rotate(-45deg) translate(2px, -2px);
+}
+.hamburger.close span:nth-child(3) {
+    opacity: 0;
+}
+
+/* منوی موبایل */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(0,0,0,0.28);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+.mobile-menu-panel {
+    position: absolute;
+    inset-block: 0;
+    right: 0;
+    width: min(360px, 100%);
+    background: #fff;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.12);
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+.mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.nav-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.98rem;
+}
+.nav-mobile a {
+    padding-block: 0.25rem;
+}
+.mobile-cta {
+    margin-top: auto;
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mobile-menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.mobile-menu-overlay.open .mobile-menu-panel {
+    transform: translateX(0);
+}
+
+/* هیرو */
+.hero-section {
+    padding: 2.5rem 0 3.5rem;
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+}
+
+/* ترمینال اوبونتو */
+.terminal-window {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #300a24;
+    box-shadow: var(--shadow-soft);
+}
+.terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.75rem;
+    background: #2c001e;
+    color: #eee;
+    font-size: 0.75rem;
+    font-family: 'Samim', 'Tanha', system-ui;
+}
+.traffic-lights {
+    display: flex;
+    gap: 0.3rem;
+}
+.traffic-lights span {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    display: inline-block;
+}
+.traffic-lights .red { background: #ff5f57; }
+.traffic-lights .yellow { background: #ffbd2e; }
+.traffic-lights .green { background: #28c840; }
+
+.terminal-body {
+    margin: 0;
+    padding: 1.2rem 1.4rem 1.4rem;
+    background: #300a24;
+    color: #f7f7f7;
+    font-family: "Fira Code", Consolas, Menlo, Monaco, monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    direction: ltr;           /* چپ‌نویس شدن متن ترمینال */
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+/* محتوای هیرو */
+.hero-content h1 {
+    font-size: 2.1rem;
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+.hero-features {
+    margin: 0 0 1.4rem;
+    padding-left: 1rem;
+}
+.hero-features li {
+    margin-bottom: 0.3rem;
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* از همین امروز شروع کن */
+.start-now-section {
+    padding: 3.5rem 0 3rem;
+}
+.start-now-section h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+.start-now-subtitle {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 2rem;
+}
+.start-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 1.5rem;
+}
+.start-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.6rem;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.start-card-icon {
+    font-size: 2.2rem;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+}
+.start-card p {
+    margin-top: 0.5rem;
+    text-align: justify;
+}
+
+/* انیمیشن مینیمال روی هاور کارت‌ها */
+.start-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.08);
+    background: #fdfefe;
+}
+
+/* بخش‌های تصویری */
+.visual-feature-section {
+    padding: 3.5rem 0;
+}
+.visual-feature-row {
+    display: grid;
+    grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+.visual-feature-row.reversed {
+    grid-template-columns: minmax(0,1fr) minmax(0,1.15fr);
+}
+.visual-feature-image img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    display: block;
+}
+.visual-feature-text h2 {
+    margin-bottom: 0.75rem;
+}
+.visual-feature-text p {
+    margin-bottom: 0.75rem;
+    text-align: justify;
+}
+.text-link {
+    position: relative;
+    font-weight: 600;
+}
+.text-link::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+}
+
+/* نوار مهارت (دیگر شیشه‌ای نیست؛ ساده) */
+.skills-banner {
+    padding: 3.5rem 0;
+}
+.skills-banner-inner {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 2.5rem 2.8rem;
+}
+.skills-banner-inner > h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+.skills-banner-inner > p {
+    text-align: center;
+    max-width: 840px;
+    margin: 0 auto 2rem;
+}
+.skills-columns {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 2rem;
+}
+.skills-columns p {
+    text-align: justify;
+}
+
+/* اسلایدر نظرات */
+.testimonials-section {
+    padding: 3.5rem 0 3rem;
+}
+.testimonials-section h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.testimonials-intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 2.2rem;
+}
+.testimonials-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.testimonials-track {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    overflow: hidden;
+}
+.testimonial-card {
+    flex: 0 0 calc(33.333% - 1rem);
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.8rem;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    opacity: 0.6;
+    transform: scale(0.95);
+    transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+}
+.testimonial-card.active {
+    opacity: 1;
+    transform: scale(1.03) translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+}
+.testimonial-card .testimonial-text {
+    margin: 0.75rem 0 0.5rem;
+    text-align: justify;
+}
+.testimonial-avatar {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 0.75rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.testimonial-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.testimonial-stars {
+    color: #ffc400;
+}
+.testimonial-arrow {
+    border: none;
+    background: #fff;
+    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    flex-shrink: 0;
+}
+.testimonial-arrow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+}
+.testimonial-arrow.prev {
+    margin-left: 0.75rem;
+}
+.testimonial-arrow.next {
+    margin-right: 0.75rem;
+}
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-top: 1.5rem;
+}
+.testimonial-dots button {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(0,0,0,0.14);
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, width 0.2s ease;
+}
+.testimonial-dots button.active {
+    width: 16px;
+    background: var(--green);
+    transform: translateY(-1px);
+}
+
+/* ما در هر قدم کنار شما هستیم */
+.support-steps {
+    padding: 3.5rem 0;
+}
+.support-steps h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+.support-intro {
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+.support-item {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.6rem;
+    text-align: center;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+}
+.support-item p {
+    margin: 0.5rem 0;
+    text-align: justify;
+}
+.support-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+.support-link {
+    font-weight: 600;
+}
+.support-meta {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+}
+.support-item.highlight {
+    background: var(--green-soft);
+}
+.support-chat-btn {
+    margin-top: 0.5rem;
+}
+
+/* FAQ */
+.faq-section {
+    padding: 3.5rem 0 4rem;
+}
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 2.5rem;
+}
+.faq-item p {
+    margin-top: 0.5rem;
+    text-align: justify;
+}
+
+/* فوتر */
+.site-footer {
+    background: #111;
+    color: #eee;
+    padding-top: 2.5rem;
+}
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 2.5rem;
+    align-items: flex-start;
+}
+.footer-brand {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.footer-logo {
+    width: 40px;
+    height: 40px;
+}
+.footer-links {
+    display: flex;
+    gap: 3rem;
+}
+.footer-links h4 {
+    margin-bottom: 0.75rem;
+}
+.footer-links a {
+    display: block;
+    color: #ddd;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+}
+.social-links {
+    display: flex;
+    gap: 0.5rem;
+}
+.social-links img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 2px;
+}
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 1.75rem;
+    padding: 0.75rem 0 1.2rem;
+    font-size: 0.85rem;
+}
+.footer-bottom .container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+    .nav-desktop {
+        display: none;
+    }
+    .header-actions {
+        display: none; /* دکمه‌ها فقط در منوی همبرگری */
+    }
+    .hamburger {
+        display: inline-flex;
+    }
+
+    .hero-grid {
+        grid-template-columns: minmax(0,1fr);
+        gap: 2.25rem;
+    }
+    .hero-section {
+        padding-top: 1.75rem;
+    }
+
+    .start-cards {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .visual-feature-row,
+    .visual-feature-row.reversed {
+        grid-template-columns: minmax(0,1fr);
+    }
+    .visual-feature-row.reversed .visual-feature-image {
+        order: -1; /* در موبایل تصویر بالای متن باشد */
+    }
+
+    .skills-columns {
+        grid-template-columns: minmax(0,1fr);
+    }
+
+    .support-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .faq-grid {
+        grid-template-columns: minmax(0,1fr);
+    }
+
+    .footer-inner {
+        flex-direction: column;
+    }
+}
+
+/* حالت موبایل کوچکتر و اسلایدر نظرات تکی + سوایپ */
+@media (max-width: 768px) {
+    .container {
+        width: min(100% - 32px, 720px);
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .start-cards {
+        grid-template-columns: minmax(0,1fr);
+    }
+
+    .testimonials-wrapper {
+        align-items: stretch;
+    }
+    .testimonials-track {
+        gap: 0;
+    }
+    .testimonial-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+        display: none;
+        transform: none;
+        opacity: 0;
+    }
+    .testimonial-card.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+    .testimonial-arrow {
+        display: none; /* در موبایل فقط سوایپ */
+    }
+
+    .support-grid {
+        grid-template-columns: minmax(0,1fr);
+    }
+
+    .footer-inner {
+        gap: 1.5rem;
+    }
+}

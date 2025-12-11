@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>کُدبانو | کدنویسی لطیف و کاربردی برای زندگی</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- فاوآیکون‌ها (همه در پوشه icon کنار فایل اصلی) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="icon/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="icon/favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- فونت آیکون گوگل (Material Icons) -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <button class="hamburger" id="hamburgerBtn" aria-label="باز کردن منو">
+            <span></span><span></span><span></span>
+        </button>
+
+        <a href="https://codbanoo.ir" class="logo" draggable="false">
+            <!-- آیکون اصلی کُدبانو در کنار کد: codbanooICON.svg -->
+            <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="logo-icon" draggable="false" />
+            <span class="logo-text">کُدبانو</span>
+        </a>
+
+        <nav class="nav-desktop">
+            <a href="#scenarios">سناریوهای واقعی</a>
+            <a href="https://codbanoo.ir/courses">دوره‌ها</a>
+            <a href="https://codbanoo.ir/blog">بلاگ</a>
+            <a href="#pricing">تعرفه‌ها</a>
+            <a href="#support">پشتیبانی</a>
+        </nav>
+
+        <!-- دکمه‌ها: در دسکتاپ اینجا، در موبایل داخل منوی همبرگری -->
+        <div class="header-actions">
+            <a href="https://codbanoo.ir/login" class="btn btn-ghost">ورود</a>
+            <a href="https://codbanoo.ir/signup" class="btn btn-primary">رایگان شروع کن</a>
+        </div>
+    </div>
+
+    <!-- منوی همبرگری در موبایل/تبلت -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-panel">
+            <div class="mobile-menu-header">
+                <a href="https://codbanoo.ir" class="logo" draggable="false">
+                    <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="logo-icon" draggable="false" />
+                    <span class="logo-text">کُدبانو</span>
+                </a>
+                <button class="hamburger close" id="mobileMenuClose" aria-label="بستن منو">
+                    <span></span><span></span>
+                </button>
+            </div>
+
+            <nav class="nav-mobile">
+                <a href="#scenarios">سناریوهای واقعی</a>
+                <a href="https://codbanoo.ir/courses">دوره‌ها</a>
+                <a href="https://codbanoo.ir/blog">بلاگ</a>
+                <a href="#pricing">تعرفه‌ها</a>
+                <a href="#support">پشتیبانی</a>
+            </nav>
+
+            <div class="mobile-cta">
+                <a href="https://codbanoo.ir/login" class="btn btn-ghost full-width">ورود</a>
+                <a href="https://codbanoo.ir/signup" class="btn btn-primary full-width">رایگان شروع کن</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <!-- هیرو: ترمینال اوبونتو + متن کناری -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-visual">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="traffic-lights">
+                            <span class="red"></span>
+                            <span class="yellow"></span>
+                            <span class="green"></span>
+                        </div>
+                        <div class="terminal-title">$ codbanoo@home:~/scripts</div>
+                    </div>
+                    <pre class="terminal-body"><code id="terminalText"></code></pre>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <h1>کدنویسی، ساده‌تر از همیشه</h1>
+                <p>
+                    با چند کلیک، کارهای تکراری‌ات را خودکار کن. در هر درس، یک سناریوی واقعی را باز می‌کنیم؛ از مرتب‌سازی پوشه‌های شلوغ تا ساختن چک‌لیست کارهای هفتگی. تو فقط قدم‌ها را دنبال می‌کنی و نتیجه را روی سیستم خودت می‌بینی.
+                </p>
+                <ul class="hero-features">
+                    <li>ویدئوهای کوتاه و قابل‌فهم</li>
+                    <li>کُدهای آماده قابل کپی و ویرایش</li>
+                    <li>پیشنهاد خودکار برای بهبود کارهایت</li>
+                </ul>
+                <div class="hero-actions">
+                    <a href="#sample-lesson" class="btn btn-ghost">تماشای یک درس رایگان</a>
+                    <a href="https://codbanoo.ir/signup" class="btn btn-primary">من هم می‌خواهم امتحان کنم</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- از همین امروز شروع کن -->
+    <section class="start-now-section" id="sample-lesson">
+        <div class="container">
+            <h2>از همین امروز شروع کن</h2>
+            <p class="start-now-subtitle">
+                اول چند تمرین کوچک و واقعی را با هم جلو می‌بریم و بعد سراغ سناریوهای عمیق‌تر می‌رویم؛ طراحی‌شده برای افراد پرمشغله؛ از جمله بانوان و هر کسی که وقت کمی دارد.
+            </p>
+
+            <div class="start-cards">
+                <article class="start-card">
+                    <span class="material-icons start-card-icon">visibility</span>
+                    <h3>اول یک درس رایگان ببین</h3>
+                    <p>
+                        فقط کافی است یک درس نمونه را تماشا کنی تا ببینی چطور با چند خط کُد قابل‌فهم، یک کار واقعی را روی سیستم خودت خودکار می‌کنیم.
+                    </p>
+                </article>
+
+                <article class="start-card">
+                    <span class="material-icons start-card-icon">lock</span>
+                    <h3>بدون نیاز به پیش‌زمینه برنامه‌نویسی</h3>
+                    <p>
+                        تمام مثال‌ها با فرض آشنایی حداقلی با کامپیوتر ساخته شده‌اند. اگر بتوانی پوشه بسازی و فایل جابه‌جا کنی، همین برای شروع کافی است.
+                    </p>
+                </article>
+
+                <article class="start-card">
+                    <span class="material-icons start-card-icon">favorite</span>
+                    <h3>مخصوص افراد کم‌وقت</h3>
+                    <p>
+                        هر درس کوتاه و جمع‌وجور است و می‌توانی بین کار و زندگی آن را ببینی. بسیاری از کارها را همان روز اول روی سیستم خودت اجرا می‌کنی.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش‌های تصویری شبیه وبزی (برای قرار دادن تصاویر دلخواه) -->
+    <section class="visual-feature-section" id="scenarios">
+        <div class="container visual-feature-row">
+            <div class="visual-feature-image">
+                <!-- تصویر ۱: مدیریت فایل‌ها -->
+                <!-- جایگزین کن: اسکرین‌شات از مرتب‌سازی پوشه‌ها یا مدیریت فایل‌ها -->
+                <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                     alt="نمونه اسکریپت مرتب‌سازی پوشه‌ها" draggable="false">
+            </div>
+            <div class="visual-feature-text">
+                <h2>هماهنگ با کامپیوتر و موبایل</h2>
+                <p>
+                    اسکریپت‌های کُدبانو روی ویندوز، مک و لینوکس قابل اجرا هستند و بسیاری از آن‌ها را می‌توانی روی گوشی هم تنظیم کنی. از مرتب‌سازی عکس‌های موبایل تا پاکسازی پوشه دانلودها.
+                </p>
+                <a href="https://codbanoo.ir/courses/file-automation" class="text-link">
+                    ببین این درس چه می‌کند
+                </a>
+            </div>
+        </div>
+
+        <div class="container visual-feature-row reversed">
+            <div class="visual-feature-image">
+                <!-- تصویر ۲: برنامه‌ریزی و چک‌لیست -->
+                <!-- جایگزین کن: تصویری از برنامه‌ریزی و تقویم یا تودو لیست -->
+                <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                     alt="اسکریپت برنامه‌ریزی و چک‌لیست" draggable="false">
+            </div>
+            <div class="visual-feature-text">
+                <h2>چک‌لیست‌های خودکار برای زندگی روزمره</h2>
+                <p>
+                    از لیست خرید هفتگی تا آماده‌سازی گزارش‌های ساده کاری، با چند اسکریپت کوچک می‌توانی هر هفته زمان قابل‌توجهی ذخیره کنی و چیزی را فراموش نکنی.
+                </p>
+                <a href="https://codbanoo.ir/courses/home-planning" class="text-link">
+                    مشاهده سناریوهای برنامه‌ریزی
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- نوار متنی (برگشته به حالت قبل، بدون شیشه‌ای) -->
+    <section class="skills-banner">
+        <div class="container skills-banner-inner">
+            <h2>ساخت یک مهارت حرفه‌ای، از اینجا شروع می‌شود</h2>
+            <p>
+                کُدبانو قرار نیست از تو یک برنامه‌نویس تمام‌وقت بسازد؛ هدف ما این است که یاد بگیری چطور با کمک چند اسکریپت ساده، کارهای تکراری را به کامپیوتر بسپاری و وقتت را برای چیزهای مهم‌تر آزاد کنی.
+            </p>
+
+            <div class="skills-columns">
+                <div>
+                    <h3>ظاهر دلخواهتان را با چند کلیک طراحی کنید.</h3>
+                    <p>
+                        کُدها را عیناً کپی می‌کنی، در حد نیازت تغییر می‌دهی و همان لحظه خروجی را می‌بینی.
+                    </p>
+                </div>
+                <div>
+                    <h3>حضور در فضای آنلاین اهمیت زیادی دارد.</h3>
+                    <p>
+                        از نظم‌دادن به پوشه‌های کاری تا آماده‌سازی فایل‌های ارسالی برای مشتری‌ها؛ همه‌چیز مرتب می‌شود.
+                    </p>
+                </div>
+                <div>
+                    <h3>هر امکاناتی که نیاز دارید در اختیارتان است.</h3>
+                    <p>
+                        نمونه‌کدها، تمرین‌های قابل دانلود و پیشنهادهای تکمیلی برای خودکارسازی عمیق‌تر.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- تجربه کاربران (اسلایدر ۷ نفری) -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>تجربه‌ی کاربران کُدبانو</h2>
+            <p class="testimonials-intro">
+                کسانی که با دنیای فنی میانۀ زیادی نداشتند، حالا با چند اسکریپت ساده، بخش‌هایی از زندگی و کارشان را خودکار کرده‌اند.
+            </p>
+
+            <div class="testimonials-wrapper">
+                <button class="testimonial-arrow prev" id="testimonialPrev" aria-label="نظر قبلی">
+                    <span class="material-icons">chevron_right</span>
+                </button>
+
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <!-- ۱ -->
+                    <article class="testimonial-card active">
+                        <div class="testimonial-avatar female">
+                            <!-- تصویر نمونه کاربر ۱ --> 
+                            <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                 alt="کاربر کُدبانو" draggable="false">
+                        </div>
+                        <h3>هستی رضایی</h3>
+                        <p class="testimonial-role">کارشناس منابع انسانی</p>
+                        <p class="testimonial-text">
+                            با اسکریپت‌های کُدبانو، گزارش‌های ماهانه‌ی حضور و غیاب را به‌طور خودکار آماده می‌کنم. هر ماه چند ساعت زمانم آزاد شده.
+                        </p>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </article>
+
+                    <!-- ۲ -->
+                    <article class="testimonial-card">
+                        <div class="testimonial-avatar male">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                 alt="کاربر کُدبانو" draggable="false">
+                        </div>
+                        <h3>سامان فائق</h3>
+                        <p class="testimonial-role">مشاور توسعه کسب‌وکار</p>
+                        <p class="testimonial-text">
+                            قبلاً برای هر گزارش فروش مجبور بودم از چند فایل مختلف خروجی بگیرم. حالا با یک اسکریپت کوتاه، فایل‌ها خودشان کنار هم قرار می‌گیرند و داشبورد آماده می‌شود.
+                        </p>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </article>
+
+                    <!-- ۳ -->
+                    <article class="testimonial-card">
+                        <div class="testimonial-avatar female">
+                            <img src="https://images.pexels.com/photos/1181742/pexels-photo-1181742.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                 alt="کاربر کُدبانو" draggable="false">
+                        </div>
+                        <h3>نگین معینی</h3>
+                        <p class="testimonial-role">صاحب کسب‌وکار خانگی</p>
+                        <p class="testimonial-text">
+                            صورت‌حساب‌ها، لیست سفارش‌ها و اطلاعات مشتریانم الآن با کمک چند اسکریپت کوتاه مرتب می‌شوند و دغدغه‌ی فراموشی سفارش‌ها را ندارم.
+                        </p>
+                        <div class="testimonial-stars">★★★★☆</div>
+                    </article>
+
+                    <!-- ۴ -->
+                    <article class="testimonial-card">
+                        <div class="testimonial-avatar male">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                 alt="کاربر کُدبانو" draggable="false">
+                        </div>
+                        <h3>مانی شریفی</h3>
+                        <p class="testimonial-role">دانشجو و فریلنسر</p>
+                        <p class="testimonial-text">
+                            برای پروژه‌های دانشگاهی همیشه با داده‌های تکراری سروکار داشتم. با کُدبانو یاد گرفتم چطور یک‌بار اسکریپت بنویسم و هر ترم دوباره از آن استفاده کنم.
+                        </p>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </article>
+
+                    <!-- ۵ -->
+                    <article class="testimonial-card">
+                        <div class="testimonial-avatar female">
+                            <img src="https://images.pexels.com/photos/3760852/pexels-photo-3760852.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                 alt="کاربر کُدبانو" draggable="false">
+                        </div>
+                        <h3>الهام قاسمی</h3>
+                        <p class="testimonial-role">مدیر دفتر کوچک</p>
+                        <p class="testimonial-text">
+                            یاد گرفتم فرم‌های تکراری و نامه‌های اداری را با یک اسکریپت تولید کنم. حالا به‌جای کپی‌پیست، فقط یک فایل اجرا می‌کنم.
+                        </p>
+                        <div class="testimonial-stars">★★★★☆</div>
+                    </article>
+
+                    <!-- ۶ -->
+                    <article class="testimonial-card">
+                        <div class="testimonial-avatar male">
+                            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                 alt="کاربر کُدبانو" draggable="false">
+                        </div>
+                        <h3>آرمان ذوقی</h3>
+                        <p class="testimonial-role">طراح گرافیک</p>
+                        <p class="testimonial-text">
+                            خروجی گرفتن از پروژه‌ها برای مشتری‌ها همیشه زمان‌بر بود. با یک اسکریپت ساده، نسخه‌های مختلف فایل‌هایم خودکار ساخته و مرتب می‌شوند.
+                        </p>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </article>
+
+                    <!-- ۷ -->
+                    <article class="testimonial-card">
+                        <div class="testimonial-avatar female">
+                            <img src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                 alt="کاربر کُدبانو" draggable="false">
+                        </div>
+                        <h3>شیوا محمدی</h3>
+                        <p class="testimonial-role">مربی آموزشی</p>
+                        <p class="testimonial-text">
+                            از اسکریپت‌های کُدبانو برای آماده‌سازی جزوه‌ها و تمرین‌های شاگردها استفاده می‌کنم. دیگر لازم نیست هر بار فایل‌ها را جداگانه تنظیم کنم.
+                        </p>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </article>
+                </div>
+
+                <button class="testimonial-arrow next" id="testimonialNext" aria-label="نظر بعدی">
+                    <span class="material-icons">chevron_left</span>
+                </button>
+            </div>
+
+            <div class="testimonial-dots" id="testimonialDots"></div>
+        </div>
+    </section>
+
+    <!-- بخش «ما در هر قدم کنار شما هستیم» -->
+    <section class="support-steps" id="support">
+        <div class="container">
+            <h2>ما در هر قدم کنار شما هستیم</h2>
+            <p class="support-intro">
+                هر زمان که نیاز به راهنمایی داشته باشی، می‌توانی روی تیم کُدبانو حساب کنی؛ از انتخاب دوره تا اجرای اسکریپت‌ها روی سیستم خودت.
+            </p>
+
+            <div class="support-grid">
+                <div class="support-item">
+                    <span class="material-icons support-icon">menu_book</span>
+                    <h3>آکادمی کُدبانو</h3>
+                    <p>آموزش‌های قدم‌به‌قدم، مثال‌های واقعی و تمرین‌های قابل دانلود.</p>
+                    <p class="support-link">codbanoo.ir/courses</p>
+                    <p class="support-meta">۲۴ ساعته</p>
+                </div>
+                <div class="support-item">
+                    <span class="material-icons support-icon">support_agent</span>
+                    <h3>تماس با ما</h3>
+                    <p>سوال فنی، پیشنهاد یا همراهی در نصب اسکریپت‌ها.</p>
+                    <p class="support-link contact-phone">09117335899</p>
+                    <p class="support-meta">۹ صبح تا ۸ شب</p>
+                </div>
+                <div class="support-item">
+                    <span class="material-icons support-icon">email</span>
+                    <h3>تیکت و ایمیل</h3>
+                    <p>اگر زمان تلفن‌زدن نداری، برایمان ایمیل بفرست.</p>
+                    <p class="support-link contact-email">support@codbanoo.ir</p>
+                    <p class="support-meta">۲۴ ساعته</p>
+                </div>
+                <div class="support-item highlight">
+                    <span class="material-icons support-icon">chat</span>
+                    <h3>گفتگوی آنلاین</h3>
+                    <p>در روزهای کاری می‌توانی به‌صورت زنده با ما چت کنی.</p>
+                    <p class="support-meta">۹ صبح تا ۸ شب</p>
+                    <a href="https://codbanoo.ir/chat" class="btn btn-primary support-chat-btn">
+                        شروع گفتگوی آنلاین
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- پرسش و پاسخ (همه باز، بدون آکاردئون) -->
+    <section class="faq-section" id="pricing">
+        <div class="container">
+            <h2>پرسش و پاسخ کُدبانو</h2>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>من دانش طراحی سایت را ندارم، آیا می‌توانم کُد بنویسم؟</h3>
+                    <p>
+                        بله. کُدبانو برای کسانی ساخته شده که از فضای فنی فاصله دارند. با مثال‌های واقعی و قدم‌به‌قدم، فقط کافی است دستورالعمل‌ها را دنبال کنی.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3>آیا برای استفاده از کُدبانو باید لینوکس بلد باشم؟</h3>
+                    <p>
+                        نه؛ اسکریپت‌ها روی ویندوز، مک و لینوکس قابل اجرا هستند و در هر درس نسخه مناسب سیستم‌عاملت را می‌بینی.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3>اگر وسط کار به مشکل بخورم چه؟</h3>
+                    <p>
+                        می‌توانی از طریق پشتیبانی آنلاین، ایمیل یا تالار گفت‌وگو سوالت را مطرح کنی؛ تیم ما و بقیه کاربران کمکت می‌کنند.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3>آیا این دوره‌ها برای مردان هم مناسب است؟</h3>
+                    <p>
+                        بله. لحن و مثال‌ها دوستانه و قابل‌فهم هستند و برای همه کسانی طراحی شده‌اند که می‌خواهند کارهای روزمره‌شان را خودکار کنند.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3>چطور می‌توانم درس‌ها را روی موبایل ببینم؟</h3>
+                    <p>
+                        همه ویدئوها و متن‌ها در موبایل و تبلت هم به‌خوبی نمایش داده می‌شوند و می‌توانی در زمان‌های خالی کوتاه آن‌ها را تماشا کنی.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3>پرداخت و ثبت‌نام چطور انجام می‌شود؟</h3>
+                    <p>
+                        ثبت‌نام با ایمیل یا شماره موبایل انجام می‌شود و بعد می‌توانی به‌صورت امن از درگاه‌های بانکی معتبر پرداخت کنی.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="footer-logo" draggable="false">
+            <div>
+                <p>کُدبانو؛ کدنویسی لطیف و کاربردی برای زندگی روزمره.</p>
+                <p>شعار ما: «چند خط کُد، چند ساعت وقت آزادتر»</p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>کُدبانو</h4>
+                <a href="https://codbanoo.ir/about">درباره ما</a>
+                <a href="https://codbanoo.ir/courses">دوره‌ها</a>
+                <a href="https://codbanoo.ir/blog">بلاگ</a>
+            </div>
+            <div>
+                <h4>پشتیبانی</h4>
+                <a href="#support">ارتباط با ما</a>
+                <a href="https://codbanoo.ir/faq">سوالات متداول</a>
+                <a href="https://codbanoo.ir/privacy">حریم خصوصی</a>
+            </div>
+            <div>
+                <h4>ما را در شبکه‌های اجتماعی دنبال کنید</h4>
+                <div class="social-links">
+                    <!-- اینستاگرام -->
+                    <a href="https://instagram.com/codbanoo_official" target="_blank" rel="noreferrer">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+                             alt="اینستاگرام کُدبانو" draggable="false">
+                    </a>
+                    <!-- تلگرام -->
+                    <a href="https://t.me/codbanoo_official" target="_blank" rel="noreferrer">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                             alt="تلگرام کُدبانو" draggable="false">
+                    </a>
+                    <!-- روبیکا -->
+                    <a href="https://rubika.ir/codbanoo_official" target="_blank" rel="noreferrer">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Rubika_new_icon.png"
+                             alt="روبیکا کُدبانو" draggable="false">
+                    </a>
+                    <!-- ایتا -->
+                    <a href="https://eitaa.com/codbanoo_official" target="_blank" rel="noreferrer">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Eitaa_logo.png"
+                             alt="ایتا کُدبانو" draggable="false">
+                    </a>
+                    <!-- نی‌نی‌سایت -->
+                    <a href="https://www.ninisite.com" target="_blank" rel="noreferrer">
+                        <!-- می‌توانی بعداً این لوگو را با نسخه‌ی دلخواه عوض کنی -->
+                        <img src="https://assets.brandfetch.io/ninisite.com/logo"
+                             alt="نی‌نی‌سایت" draggable="false">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="contact-phone">09117335899</p>
+            <p class="contact-email">support@codbanoo.ir</p>
+            <p>© تمامی حقوق برای کُدبانو محفوظ است.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
