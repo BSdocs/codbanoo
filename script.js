@@ -487,3 +487,21 @@ function loadImagesFromJSON() {
             console.warn("Could not load links.json:", err);
         });
 }
+// =========================
+// نوار پیشرفت اسکرول
+// =========================
+(function () {
+    const bar = document.querySelector('.scroll-progress-bar');
+    if (!bar) return;
+
+    function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        bar.style.width = progress + "%";
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+})();
