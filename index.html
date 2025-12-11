@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8" />
-    <title>کُدبانو | کدنویسی ساده برای زندگی روزمره</title>
+    <title>پلتفرم برنامه‌نویسی آسان کُدبانو</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
           content="کُدبانو همراه تو برای یادگیری کدنویسی ساده و کاربردی در زندگی روزمره است؛ از مرتب‌سازی فایل‌ها تا ساخت گزارش‌های کوچک و خودکارسازی کارهای تکراری." />
@@ -22,26 +22,109 @@
 <body>
 <header class="site-header">
     <div class="container header-inner">
-        <!-- <a href="https://codbanoo.ir" class="brand">
-            <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="brand-logo" />
-            <span class="brand-text">
-                <span class="brand-name">کُدبانو</span>
-                <span class="brand-tagline">کدنویسی لطیف و کاربردی برای زندگی</span>
-            </span>
-        </a> -->
         <a href="https://codbanoo.ir" class="logo" draggable="false">
             <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="logo-icon" draggable="false" />
             <span class="logo-text">کُدبانو</span>
         </a>
         <nav class="main-nav">
             <ul>
-                <li><a href="https://codbanoo.ir/courses">دوره‌ها</a></li>
-                <li><a href="https://codbanoo.ir/scenarios">سناریوهای واقعی</a></li>
+                <!-- دوره‌ها -->
+                <li class="has-submenu">
+                    <a href="https://codbanoo.ir/courses">
+                        دوره‌ها
+                        <span class="submenu-arrow">▾</span>
+                    </a>
+        
+                    <div class="submenu submenu-wide">
+                        <!-- ستون ۱: بر اساس سیستم‌عامل -->
+                        <div class="submenu-section">
+                            <h4>بر اساس سیستم‌عامل</h4>
+                            <ul>
+                                <li><a href="https://codbanoo.ir/courses/windows-automation">اسکریپت‌های کاربردی ویندوز</a></li>
+                                <li><a href="https://codbanoo.ir/courses/mac-automation">خودکارسازی روی مک (macOS)</a></li>
+                                <li><a href="https://codbanoo.ir/courses/linux-automation">ترفندهای ساده در لینوکس</a></li>
+                            </ul>
+                        </div>
+        
+                        <!-- ستون ۲: بر اساس زبان و ابزار -->
+                        <div class="submenu-section">
+                            <h4>زبان‌ها و ابزارها</h4>
+                            <ul>
+                                <li><a href="https://codbanoo.ir/courses/python-basics">پایتون برای کارهای روزمره</a></li>
+                                <li><a href="https://codbanoo.ir/courses/sql-reports">SQL برای گزارش‌گیری ساده</a></li>
+                                <li><a href="https://codbanoo.ir/courses/web-automation">ابزارهای وب (HTML / Automation)</a></li>
+                            </ul>
+                        </div>
+        
+                        <!-- ستون ۳: مسیرهای پیشنهادی -->
+                        <div class="submenu-section">
+                            <h4>مسیرهای پیشنهادی</h4>
+                            <ul>
+                                <li><a href="https://codbanoo.ir/courses/get-started">شروع از صفر برای افراد پرمشغله</a></li>
+                                <li><a href="https://codbanoo.ir/courses/office-routines">خودکارسازی کارهای اداری</a></li>
+                                <li><a href="https://codbanoo.ir/courses/home-digital-life">دیجیتالی‌کردن کارهای خانه</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+        
+                <!-- سناریوهای واقعی -->
+                <li class="has-submenu">
+                    <a href="https://codbanoo.ir/scenarios">
+                        سناریوهای واقعی
+                        <span class="submenu-arrow">▾</span>
+                    </a>
+        
+                    <div class="submenu">
+                        <div class="submenu-section">
+                            <h4>زندگی روزمره</h4>
+                            <ul>
+                                <li><a href="https://codbanoo.ir/scenarios/home-and-life">مرتب‌سازی پوشه‌های شخصی و عکس‌ها</a></li>
+                                <li><a href="https://codbanoo.ir/scenarios/family-planning">چک‌لیست‌ها و برنامه‌ریزی خانوادگی</a></li>
+                            </ul>
+                        </div>
+        
+                        <div class="submenu-section">
+                            <h4>کار و کسب‌وکار</h4>
+                            <ul>
+                                <li><a href="https://codbanoo.ir/scenarios/work-and-business">گزارش‌های خودکار کاری</a></li>
+                                <li><a href="https://codbanoo.ir/scenarios/freelance">مدیریت فایل‌های فریلنسری</a></li>
+                            </ul>
+                        </div>
+        
+                        <div class="submenu-section">
+                            <h4>درس و دانشگاه</h4>
+                            <ul>
+                                <li><a href="https://codbanoo.ir/scenarios/study">مرتب‌سازی تکالیف و اسلایدها</a></li>
+                                <li><a href="https://codbanoo.ir/scenarios/research-notes">سازمان‌دهی جزوه‌ها و نوت‌ها</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+        
+                <!-- آیتم‌های ساده -->
                 <li><a href="https://codbanoo.ir/blog">بلاگ</a></li>
                 <li><a href="https://codbanoo.ir/support">پشتیبانی</a></li>
-                <li><a href="https://codbanoo.ir/pricing">تعرفه‌ها</a></li>
+        
+                <!-- درباره‌ما (به‌جای تعرفه‌ها) -->
+                <li class="has-submenu">
+                    <a href="https://codbanoo.ir/about">
+                        درباره‌ما
+                        <span class="submenu-arrow">▾</span>
+                    </a>
+        
+                    <ul class="submenu">
+                        <li><a href="https://codbanoo.ir/about/team">درباره تیم کُدبانو</a></li>
+                        <li><a href="https://codbanoo.ir/about/members">اعضای اصلی و همکاران</a></li>
+                        <li><a href="https://codbanoo.ir/about/brand-story">داستان شکل‌گیری کُدبانو</a></li>
+                        <li><a href="https://codbanoo.ir/about/values">هویت برند و ارزش‌ها</a></li>
+                        <li><a href="https://codbanoo.ir/about/contact">تماس با ما</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
+        
+        
         <div class="header-actions">
             <a href="https://codbanoo.ir/login" class="btn btn-ghost">ورود</a>
             <a href="https://codbanoo.ir/signup" class="btn btn-primary">رایگان شروع کن</a>
@@ -52,20 +135,24 @@
         </button>
     </div>
 </header>
-    
+<div class="scroll-progress-bar"></div>
 <!-- موبایل منو -->
 <div class="mobile-nav" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
     <div class="mobile-nav-panel">
         <button class="mobile-close" aria-label="بستن منو">
             <span class="material-icons">close</span>
         </button>
-        <ul>
-            <li><a href="https://codbanoo.ir/courses">دوره‌ها</a></li>
-            <li><a href="https://codbanoo.ir/scenarios">سناریوهای واقعی</a></li>
-            <li><a href="https://codbanoo.ir/blog">بلاگ</a></li>
-            <li><a href="https://codbanoo.ir/support">پشتیبانی</a></li>
-            <li><a href="https://codbanoo.ir/pricing">تعرفه‌ها</a></li>
-        </ul>
+        <nav class="mobile-main-nav">
+            <ul>
+                <li><a href="https://codbanoo.ir/courses">دوره‌ها</a></li>
+                <li><a href="https://codbanoo.ir/scenarios">سناریوهای واقعی</a></li>
+                <li><a href="https://codbanoo.ir/blog">بلاگ</a></li>
+                <li><a href="https://codbanoo.ir/support">پشتیبانی</a></li>
+                <li><a href="https://codbanoo.ir/pricing">درباره‌ما</a></li>
+            </ul>
+        </nav>
+        
+        
         <div class="mobile-nav-actions">
             <a href="https://codbanoo.ir/login" class="btn btn-ghost">ورود</a>
             <a href="https://codbanoo.ir/signup" class="btn btn-primary">رایگان شروع کن</a>
