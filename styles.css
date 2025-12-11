@@ -18,6 +18,30 @@
     font-style: normal;
     font-display: swap;
 }
+/* Chrome, Edge, Safari */
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox */
+body {
+    scrollbar-width: none;
+}
+
+/* IE / Legacy */
+body {
+    -ms-overflow-style: none;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -85,6 +109,23 @@ button {
 /* =========================
    Header & Navigation
    ========================= */
+:root {
+    --header-height-desktop: 64px;
+    --header-height-mobile: 52px;
+}
+
+/* نوار پیشرفت اسکرول – پایین هدر */
+.scroll-progress-bar {
+    position: fixed;
+    top: var(--header-height-desktop);
+    right: 0;
+    height: 4px;
+    width: 0%;
+    background-color: #2f8f7f;
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
+
 
 .site-header {
     position: sticky;
@@ -101,6 +142,8 @@ button {
     justify-content: space-between;
     gap: 1.5rem;
     padding: 0.75rem 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .brand {
@@ -154,7 +197,8 @@ button {
     color: #666;
 }
 
-.main-nav ul {
+/* آیتم‌های منوی اصلی */
+.main-nav > ul {
     list-style: none;
     display: flex;
     gap: 1.5rem;
@@ -162,11 +206,16 @@ button {
     padding: 0;
 }
 
+.main-nav li {
+    position: relative;
+}
+
 .main-nav a {
     font-size: 0.95rem;
     position: relative;
 }
 
+/* خط زیر متن آیتم اصلی */
 .main-nav a::after {
     content: "";
     position: absolute;
@@ -181,6 +230,136 @@ button {
 .main-nav a:hover::after {
     width: 100%;
 }
+
+/* استایل آیتم‌هایی که زیرمنو دارند */
+.main-nav .has-submenu > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* فلش کوچک کنار بعضی آیتم‌ها */
+.main-nav .has-submenu > a .submenu-arrow {
+    font-size: 0.8rem;
+    transform: translateY(1px);
+}
+
+/* نوار نامرئی بین آیتم و زیرمنو برای جلوگیری از بسته‌شدن لحظه‌ای */
+.main-nav .has-submenu::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 100%;
+    height: 14px;          /* این فاصله اجازه می‌دهد موس رد شود ولی :hover قطع نشود */
+}
+
+/* خود زیرمنو */
+.main-nav .submenu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);  /* نزدیک‌تر به آیتم اصلی، بدون فاصله‌ی زیاد */
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    min-width: 220px;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 1000;
+}
+
+.main-nav .submenu.submenu-wide {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 0.6rem;
+    min-width: 560px;
+
+    padding: 1.2rem 1.6rem; /* فاصله داخلی استاندارد – مهم‌ترین بخش */
+}
+
+
+
+/* ستون‌های داخل زیرمنو */
+.main-nav .submenu .submenu-section h4 {
+    font-family: "Samim", "Tanha", system-ui;
+    font-size: 0.9rem;
+    margin: 0 0 0.4rem;
+    color: #111827;
+}
+
+.main-nav .submenu .submenu-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* فاصله بین آیتم‌های زیرمنو و خوانایی بهتر متن‌ها */
+.main-nav .submenu .submenu-section ul li + li {
+    margin-top: 0.3rem;
+}
+
+.main-nav .submenu .submenu-section ul li a {
+    line-height: 1.8;      /* فاصله عمودی بین خطوط متن هر آیتم */
+}
+
+/* خط جداکننده‌ی نرم بین ستون‌ها */
+.main-nav .submenu.submenu-wide .submenu-section {
+    position: relative;
+    padding-inline: 0.5rem 1rem; /* کمی فاصله داخلی، سمت راست بیشتر (RTL) */
+}
+
+.main-nav .submenu.submenu-wide .submenu-section + .submenu-section::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    bottom: 0.2rem;
+    right: 0; /* چون سایت RTL است، خط بین ستون‌ها سمت راست ستون جدید می‌افتد */
+    width: 1px;
+    background: rgba(148, 163, 184, 0.35); /* خاکستری روشن */
+}
+
+
+/* لینک‌های خود زیرمنو */
+.main-nav .submenu a {
+    display: block;
+    font-size: 0.88rem;
+    padding: 0.22rem 0;
+    white-space: nowrap;
+    color: #374151;
+}
+
+/* روی آیتم‌های زیرمنو خط زیر نیاید */
+.main-nav .submenu a::after {
+    display: none;
+}
+
+.main-nav .submenu a:hover {
+    color: #111827;
+}
+
+/* نمایش زیرمنو در هاور دسکتاپ */
+.main-nav .has-submenu:hover > .submenu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* فقط موبایل و تبلت عمودی: زیرمنو نداشته باشند */
+@media (max-width: 768px) {
+    .main-nav .submenu {
+        display: none;
+    }
+    .main-nav .has-submenu::before {
+        display: none;
+    }
+}
+
 
 .header-actions {
     display: flex;
@@ -679,7 +858,7 @@ button {
     width: 100%;
     max-width: 640px;
 
-    background: #fff;
+    background: #d1f3eb;
     border-radius: 20px;
     padding: 1.8rem 1.7rem;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
@@ -1191,5 +1370,18 @@ button {
 
     .glass-strip {
         padding: 1.6rem 1.4rem;
+    }
+}
+@media(max-width: 768px) {
+    .scroll-progress-bar {
+        top: var(--header-height-mobile);
+        height: 3px; /* اسکرول بار کوچک‌تر برای موبایل */
+    }
+}
+/* تبلت و موبایل — فاصله کمتر، هماهنگ با فوتر */
+@media (max-width: 768px) {
+    .header-inner {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
     }
 }
