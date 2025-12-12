@@ -1230,7 +1230,7 @@ button {
   }
   
 .trust-badge-img{
-    height: 200px;      /* ویندوز */
+    height: 120px;      /* ویندوز */
     width: auto;
     border-radius: 12px;
     background: rgba(255,255,255,0.92);
@@ -1461,8 +1461,9 @@ button {
 }
 /* موبایل */
 @media (max-width: 768px){
-    .trust-badge-img{ height: 175px; }
+    .trust-badge-img{ height: 140px; }
   }
   
+
 
 
