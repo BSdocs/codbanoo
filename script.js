@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTerminalTyping();
     setupScrollAnimations();
     setupTestimonialsCarousel();
-    // setupTestimonials();
     loadImagesFromJSON();
 });
 
@@ -99,7 +98,8 @@ function setupTerminalTyping() {
         "",
         "for file in downloads.iterdir():",
         "    if file.suffix.lower() in {'.jpg', '.jpeg', '.png', '.heic'}:",
-        "        taken = datetime.fromtimestamp(file.stat().st_mtime)",
+        "        mtime = file.stat().st_mtime",
+        "        taken = datetime.fromtimestamp(mtime)",
         "        if taken.year == current_year:",
         "            month = taken.strftime('%m')",
         "            target = photos_root / str(current_year) / month",
@@ -153,122 +153,6 @@ function setupScrollAnimations() {
     observed.forEach((el) => observer.observe(el));
 }
 
-// function setupTestimonials() {
-//     const slider = document.querySelector(".testimonials-slider");
-//     const cards = Array.from(document.querySelectorAll(".testimonial-card"));
-//     const dots = Array.from(document.querySelectorAll(".testimonial-dots .dot"));
-
-//     if (!slider || cards.length === 0 || dots.length === 0) return;
-
-//     let index = 0;
-//     let timer = null;
-
-//     // برای تشخیص اینکه کاربر در حال تعامل است یا نه
-//     let isHover = false;      // برای دسکتاپ
-//     let isTouching = false;   // برای موبایل
-//     let startX = 0;
-//     let deltaX = 0;
-
-//     const AUTO_DELAY = 8000;   // فاصله زمانی بین اسلایدها (میلی‌ثانیه)
-//     const SWIPE_THRESHOLD = 40; // حداقل جابجایی انگشت برای تشخیص سوایپ
-
-//     // نمایش یک اسلاید (با لوپ بی‌نهایت)
-//     const show = (i) => {
-//         const total = cards.length;
-//         index = (i + total) % total;  // این خط حلقه بی‌نهایت را تضمین می‌کند
-
-//         cards.forEach((card, idx) =>
-//             card.classList.toggle("is-active", idx === index)
-//         );
-//         dots.forEach((dot, idx) =>
-//             dot.classList.toggle("is-active", idx === index)
-//         );
-//     };
-
-//     const next = () => show(index + 1);
-//     const prev = () => show(index - 1);
-
-//     const stopAuto = () => {
-//         if (timer) clearInterval(timer);
-//         timer = null;
-//     };
-
-//     const startAuto = () => {
-//         stopAuto();
-//         timer = setInterval(() => {
-//             // فقط وقتی که کاربر در حال تعامل نباشد
-//             if (!isHover && !isTouching) {
-//                 next();
-//             }
-//         }, AUTO_DELAY);
-//     };
-
-//     // کلیک روی دات‌ها (هم دسکتاپ هم موبایل)
-//     dots.forEach((dot) => {
-//         dot.addEventListener("click", () => {
-//             const i = Number(dot.dataset.index || "0");
-//             show(i);
-//             startAuto();
-//         });
-//     });
-
-//     // توقف خودکار وقتی موس روی اسلایدر است (دسکتاپ)
-//     slider.addEventListener("mouseenter", () => {
-//         isHover = true;
-//     });
-
-//     slider.addEventListener("mouseleave", () => {
-//         isHover = false;
-//     });
-
-//     // سوایپ افقی روی موبایل
-//     slider.addEventListener(
-//         "touchstart",
-//         (e) => {
-//             if (e.touches.length !== 1) return;
-//             isTouching = true;
-//             startX = e.touches[0].clientX;
-//             deltaX = 0;
-//         },
-//         { passive: true }
-//     );
-
-//     slider.addEventListener(
-//         "touchmove",
-//         (e) => {
-//             if (!isTouching) return;
-//             deltaX = e.touches[0].clientX - startX;
-//         },
-//         { passive: true }
-//     );
-
-//     slider.addEventListener("touchend", () => {
-//         if (!isTouching) return;
-
-//         if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-//             if (deltaX < 0) {
-//                 // سوایپ به چپ → نظر بعدی
-//                 next();
-//             } else {
-//                 // سوایپ به راست → نظر قبلی
-//                 prev();
-//             }
-//         }
-
-//         isTouching = false;
-//         deltaX = 0;
-//         startAuto(); // بعد از سوایپ دوباره اسلاید خودکار را راه‌اندازی کن
-//     });
-
-//     // شروع اولیه
-//     show(0);
-//     startAuto();
-// }
-
-
-// =========================
-// Testimonials carousel
-// =========================
 function setupTestimonialsCarousel() {
     const slider = document.querySelector(".testimonials-slider");
     const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
