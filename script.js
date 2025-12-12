@@ -7,6 +7,64 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTestimonialsCarousel();
     loadImagesFromJSON();
 });
+// Anti-copy (deterrent) + allow phone/email copy
+(() => {
+  const REPLACEMENT = "© تمامی حقوق این وب‌سایت برای کُدبانو محفوظ است.";
+
+  const isAllowedTarget = (node) => {
+    if (!node) return false;
+    const el = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+    if (!el) return false;
+
+    // هر چیزی که داخل allow-copy باشد، کپی آزاد است
+    if (el.closest(".allow-copy")) return true;
+
+    // ورودی‌ها/تکست‌اریاها هم آزاد
+    const tag = el.tagName?.toLowerCase();
+    if (tag === "input" || tag === "textarea") return true;
+
+    // لینک‌های tel/mailto آزاد
+    const a = el.closest("a");
+    if (a && (a.href.startsWith("tel:") || a.href.startsWith("mailto:"))) return true;
+
+    return false;
+  };
+
+  document.addEventListener("copy", (e) => {
+    const sel = window.getSelection();
+    const anchorNode = sel && sel.anchorNode;
+
+    if (isAllowedTarget(anchorNode)) return; // اجازه بده متن واقعی کپی بشه
+
+    // در غیر اینصورت: متن جایگزین
+    e.preventDefault();
+    if (e.clipboardData) {
+      e.clipboardData.setData("text/plain", REPLACEMENT);
+      e.clipboardData.setData("text/html", REPLACEMENT);
+    }
+  });
+
+  // (اختیاری) راست‌کلیک را هم ببند، ولی روی allow-copy نه
+  document.addEventListener("contextmenu", (e) => {
+    if (e.target && e.target.closest(".allow-copy")) return;
+    e.preventDefault();
+  });
+
+  // (اختیاری) Ctrl+C / Cmd+C را هم بگیر، ولی روی allow-copy نه
+  document.addEventListener("keydown", (e) => {
+    const key = e.key?.toLowerCase();
+    const isCopy = (e.ctrlKey || e.metaKey) && key === "c";
+    if (!isCopy) return;
+
+    if (e.target && e.target.closest(".allow-copy")) return;
+    // جلوگیری از رفتار پیش‌فرض؛ رویداد copy بالا متن جایگزین را ست می‌کند
+    e.preventDefault();
+
+    // بعضی مرورگرها وقتی فقط keydown را می‌گیریم، copy را trigger نمی‌کنند:
+    // پس اینجا مستقیم می‌نویسیم داخل کلیپ‌بورد (اگر اجازه بده)
+    navigator.clipboard?.writeText(REPLACEMENT).catch(() => {});
+  });
+})();
 
 /* =========================
    Navigation / Mobile Menu
