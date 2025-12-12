@@ -1264,7 +1264,10 @@ button {
   padding: 6px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
-
+@media (max-width: 768px){
+  .site-footer .enamad-img,
+  .site-footer .samandehi-img{ height: 92px !important; }
+}
 
 /* Bottom */
 
@@ -1492,6 +1495,7 @@ button {
     .trust-badge-img{ height: 100px; }
   }
   
+
 
 
 
