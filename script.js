@@ -163,10 +163,10 @@ function setupTerminalTyping() {
         [/*Kotlin موبایل*/"fun main(){", "val players=listOf(\"Ali\",\"Sara\",\"Mina\")", "val actions=mutableListOf(\"roll dice\",\"collect coin\")", "actions.forEach{ println(it) }", "println(\"Players in game:\",players.size) }"],
         [/*R موبایل*/"library(readxl)", "df<-read_excel(\"codbanoo.xlsx\")", "total<-sum(df$Income,na.rm=TRUE)", "print(paste(\"Total Income:\",total))", "print(paste(\"Average:\",mean(df$Income)))"],
         [/*Lua موبایل*/"player={score=0,coins=50}", "player.score=player.score+100", "player.coins=player.coins+20", "print(\"Score:\",player.score)", "print(\"Coins:\",player.coins)"],
-        [/*Python موبایل*/"username=input('Enter username:')", "if username!='banned':", " key=input('Enter Key:')", " print('Access granted for',username)", "else: print('ACCESS DENIED!')"],
+        [/*Python موبایل*/"username=input('Enter username:')", "if username!='banned':", "    key=input('Enter Key:')", "    print('Access granted for',username)", "else: print('ACCESS DENIED!')"],
         [/*C++ موبایل*/"#include <iostream>", "using namespace std;", "double income=1000.0;", "double expense=200.0;", "cout<<\"Balance: \"<<income-expense<<endl;"],
         [/*Java موبایل*/"class Main{", "public static void main(String[] args){", "double lat=35.6895,lon=51.389;", "System.out.println(\"Home: Lat=\"+lat+\", Lon=\"+lon);", "}"],
-        [/*Go موبایل*/"package main", "import (\"fmt\";\"net/http\")", "func main(){", "resp,_:=http.Get(\"https://codbanoo.ir/CRM/1\")", "fmt.Println(resp.Status) }"],
+        [/*Go موبایل*/"package main", "import (\"fmt\";\"net/http\")", "func main(){", "resp,_:=http.Get(\"codbanoo.ir\")", "fmt.Println(resp.Status) }"],
         [/*C موبایل*/"#include <stdio.h>", "int main(){", "printf(\"Hello Mobile User!\\n\");", "return 0;", "}"],
         [/*HTML موبایل*/"<div class='card'>", "<h3>Welcome!</h3>", "<p>Mobile dashboard</p>", "</div>"],
         [/*CSS موبایل*/".card {", "background:#f0f0f0;", "padding:10px;", "border-radius:5px;", "text-align:center; }"]
