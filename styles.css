@@ -1221,47 +1221,48 @@ button {
 }
 
 /* ردیف لوگوهای اعتماد (اینماد + ساماندهی) */
-.trust-badges{
+/* Trust badges row (FINAL) — put at END of styles.css */
+@media (max-width: 768px){
+  .site-footer .trust-badges{
+    width: 100%;
+    display: flex;
+    justify-content: center;     /* وسط‌چین واقعی */
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: nowrap;
+    margin-top: 0.8rem;
+  }
+
+  .site-footer .trust-badges > a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-footer .trust-badge-img{
+    height: 92px;                /* اینجا هرچی بزنی اثر می‌کنه */
+    width: auto;
+    max-width: none;             /* جلوی محدود شدن رو می‌گیره */
+  }
+}
+
+/* Desktop (همون قبلی خودت) */
+.site-footer .trust-badges{
   margin-top: 0.8rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  flex-wrap: nowrap;     /* همیشه کنار هم */
+  flex-wrap: nowrap;
 }
 
-.trust-badges > a{
-  display: inline-flex;
-  align-items: center;
-}
-
-/* دسکتاپ */
-.trust-badge-img{
+.site-footer .trust-badge-img{
   height: 100px;
   width: auto;
-  max-width: 180px;
+  max-width: 90px;
   border-radius: 12px;
   background: rgba(255,255,255,0.92);
   padding: 6px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-}
-
-/* فقط موبایل: وسط‌چین */
-@media (max-width: 768px){
-  .trust-badges{
-    justify-content: center;   /* ✅ فقط اینجا */
-  }
-  .trust-badge-img{
-    height: 195px;
-    max-width: 185vw;
-  }
-}
-
-/* خیلی کوچک‌ها */
-@media (max-width: 420px){
-  .trust-badge-img{
-    height: 180px;
-    padding: 5px;
-  }
 }
 
 
@@ -1491,6 +1492,7 @@ button {
     .trust-badge-img{ height: 100px; }
   }
   
+
 
 
 
