@@ -111,7 +111,7 @@ button {
    ========================= */
 :root {
     --header-height-desktop: 64px;
-    --header-height-mobile: 52px;
+    --header-height-mobile: 51px;
 }
 
 /* نوار پیشرفت اسکرول – پایین هدر */
@@ -271,6 +271,8 @@ button {
     pointer-events: none;
     transition: opacity 0.18s ease, transform 0.18s ease;
     z-index: 1000;
+    max-width: min(760px, 92vw);  /* ✅ باکس اجازه دارد بزرگ شود ولی از صفحه بیرون نزند */
+    overflow: visible;
 }
 
 .main-nav .submenu.submenu-wide {
@@ -279,7 +281,8 @@ button {
     column-gap: 2rem;
     row-gap: 0.6rem;
     min-width: 560px;
-
+    width: max-content;           /* ✅ با محتوا رشد کند */
+    max-width: min(760px, 92vw);  /* ✅ اما از صفحه بیرون نزند */
     padding: 1.2rem 1.6rem; /* فاصله داخلی استاندارد – مهم‌ترین بخش */
 }
 
@@ -330,9 +333,15 @@ button {
     display: block;
     font-size: 0.88rem;
     padding: 0.22rem 0;
-    white-space: nowrap;
     color: #374151;
+
+    /* ✅ اجازه بده متن چندخطی بشه و بیرون نزنه */
+    white-space: normal;
+    overflow-wrap: break-word;     /* اگر خیلی مجبور شد، کلمه خیلی بلند بشکنه */
+    word-break: normal;            /* کلمات عادی نشکنن */
+    max-width: 100%;
 }
+
 
 /* روی آیتم‌های زیرمنو خط زیر نیاید */
 .main-nav .submenu a::after {
@@ -608,6 +617,9 @@ button {
     background: #1e0a35;
     color: #f5f5f5;
     font-family: "Fira Code", "Consolas", "Courier New", monospace;
+    margin-inline: 1rem;   /* فاصله چپ/راست از دیواره صفحه */
+    width: auto;           /* اجازه بده با margin جمع شود */
+    max-width: 100%;
 }
 
 
@@ -823,8 +835,9 @@ button {
    Testimonials
    ========================= */
 
-   .testimonials {
+.testimonials {
     padding: 3rem 0 2.5rem;
+    overflow-x: hidden; /* ✅ جلوگیری از فضای اضافه هنگام اسلاید */
 }
 
 .section-heading {
@@ -849,6 +862,9 @@ button {
     max-width: 900px;
     height: 340px;
     margin: 0 auto 1.5rem;
+    overflow: visible;
+    padding: 18px 0; /* تا گوشه‌ها و سایه‌ها نفس داشته باشند */
+
 }
 
 .testimonial-card {
@@ -858,7 +874,7 @@ button {
     width: 100%;
     max-width: 640px;
 
-    background: #d1f3eb;
+    background: #d1f3eb; /* رنگ کارت های نظرات کاربران - سبز روشن */
     border-radius: 20px;
     padding: 1.8rem 1.7rem;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
@@ -877,6 +893,20 @@ button {
     transition: transform 0.4s ease, opacity 0.4s ease;
     pointer-events: none;
 }
+
+/* یکی‌درمیون کردن رنگ کارت‌های نظرات (1,3,5 سبز / 2,4 سفید) */
+.testimonials-slider .testimonial-card:nth-child(odd) {
+    background: #d1f3eb; /* سبز خیلی روشن */
+    border-color: rgba(47, 143, 127, 0.4);
+    box-shadow: 0 14px 35px rgba(47, 143, 127, 0.22);
+}
+
+.testimonials-slider .testimonial-card:nth-child(even) {
+    background: #ffffff; /* سفید */
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+}
+
 
 .testimonial-avatar img {
     width: 74px;
@@ -1190,6 +1220,24 @@ button {
     padding: 2px;
 }
 
+/* ردیف لوگوهای اعتماد (اینماد + ساماندهی) */
+.trust-badges{
+    margin-top: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  
+.trust-badge-img{
+    height: 64px;      /* ویندوز */
+    width: auto;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.92);
+    padding: 6px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  }
+
 /* Bottom */
 
 .footer-bottom {
@@ -1247,11 +1295,8 @@ button {
 /* =========================
    Responsive
    ========================= */
-/* =========================
-   Responsive
-   ========================= */
 
-   @media (max-width: 1024px) {
+@media (max-width: 1024px) {
     /* هیرو: در تبلت و پایین‌تر، تک‌ستونه + ترمینال بالاتر از متن */
     .hero-grid {
         grid-template-columns: 1fr;
@@ -1362,7 +1407,15 @@ button {
         flex-direction: column;
         align-items: stretch;
     }
-
+    .terminal-window {
+        margin-inline: 0.8rem;
+    }
+    
+    .terminal-body {
+        padding: 0.9rem 1rem 1.05rem;
+        font-size: 0.72rem;
+    }
+    
     /* فونت کوچکتر برای متن ترمینال در موبایل کوچک */
     .terminal-body {
         font-size: 0.72rem;
@@ -1385,3 +1438,29 @@ button {
         padding-right: 1.2rem;
     }
 }
+@media (max-width: 1024px) {
+
+    /* فاصله ترمینال از دیواره‌های صفحه */
+    .terminal-window {
+        margin-inline: 1rem;
+        max-width: 100%;
+    }
+
+    /* فاصله متن داخل ترمینال */
+    .terminal-body {
+        white-space: pre-wrap;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+
+        padding: 1rem 1.1rem 1.15rem;
+    }
+
+    .terminal-header {
+        padding: 0.35rem 0.9rem;
+    }
+}
+/* موبایل */
+@media (max-width: 768px){
+    .trust-badge-img{ height: 48px; }
+  }
+  
