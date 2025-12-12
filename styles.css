@@ -2,7 +2,7 @@
    Fonts
    ========================= */
 
-@font-face {
+   @font-face {
     font-family: "Tanha";
     src: url("Tanha.woff2") format("woff2"),
          url("Tanha.woff") format("woff");
@@ -51,7 +51,8 @@ body {
     color: #222;
     direction: rtl;
 }
-
+html { scrollbar-gutter: stable; }  /* جلوگیری از تغییر عرض صفحه در ویندوز */
+body { overflow-x: hidden; }        /* جلوگیری از overflow افقی لحظه‌ای هنگام اسلاید */
 /* =========================
    Reset & Base
    ========================= */
@@ -860,7 +861,7 @@ button {
 .testimonials-slider {
     position: relative;
     max-width: 900px;
-    height: 340px;
+    height: 380px;
     margin: 0 auto 1.5rem;
     overflow: visible;
     padding: 18px 0; /* تا گوشه‌ها و سایه‌ها نفس داشته باشند */
@@ -1221,53 +1222,49 @@ button {
 }
 
 /* ردیف لوگوهای اعتماد (اینماد + ساماندهی) */
-/* Trust badges row (FINAL) — put at END of styles.css */
-@media (max-width: 768px){
-  .site-footer .trust-badges{
-    width: 100%;
-    display: flex;
-    justify-content: center;     /* وسط‌چین واقعی */
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: nowrap;
-    margin-top: 0.8rem;
-  }
-
-  .site-footer .trust-badges > a{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .site-footer .trust-badge-img{
-    height: 92px;                /* اینجا هرچی بزنی اثر می‌کنه */
-    width: auto;
-    max-width: none;             /* جلوی محدود شدن رو می‌گیره */
-  }
-}
-
-/* Desktop (همون قبلی خودت) */
-.site-footer .trust-badges{
+.trust-badges{
   margin-top: 0.8rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap;     /* همیشه کنار هم */
 }
 
-.site-footer .trust-badge-img{
+.trust-badges > a{
+  display: inline-flex;
+  align-items: center;
+}
+
+/* دسکتاپ */
+.trust-badge-img{
   height: 100px;
   width: auto;
-  max-width: 90px;
+  max-width: 180px;
   border-radius: 12px;
   background: rgba(255,255,255,0.92);
   padding: 6px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
+
+/* فقط موبایل: وسط‌چین */
 @media (max-width: 768px){
-  .site-footer .enamad-img,
-  .site-footer .samandehi-img{ height: 92px !important; }
+  .trust-badges{
+    justify-content: center;   /* ✅ فقط اینجا */
+  }
+  .trust-badge-img{
+    height: 95px;
+    max-width: 85vw;
+  }
 }
+
+/* خیلی کوچک‌ها */
+@media (max-width: 420px){
+  .trust-badge-img{
+    height: 80px;
+    padding: 5px;
+  }
+}
+
 
 /* Bottom */
 
@@ -1495,9 +1492,3 @@ button {
     .trust-badge-img{ height: 100px; }
   }
   
-
-
-
-
-
-
