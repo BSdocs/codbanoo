@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setupNav();
     setupTerminalTyping();
     setupScrollAnimations();
-    setupTestimonials();
+    setupTestimonialsCarousel();
+    // setupTestimonials();
     loadImagesFromJSON();
 });
 
@@ -46,6 +47,41 @@ function setupNav() {
 /* =========================
    Terminal Typing Animation
    ========================= */
+   function wrapTerminalCode(text, maxChars) {
+    const lines = text.split("\n");
+    const out = [];
+
+    for (const line of lines) {
+        if (!line.trim()) {
+            out.push(line);
+            continue;
+        }
+
+        const indentMatch = line.match(/^\s*/);
+        const indent = indentMatch ? indentMatch[0] : "";
+        const content = line.slice(indent.length);
+
+        const words = content.split(" ");
+        let current = indent;
+
+        for (const word of words) {
+            const candidate = (current.trim() === indent.trim() ? indent + word : current + " " + word);
+
+            if (candidate.length <= maxChars) {
+                current = candidate;
+            } else {
+                // خط قبلی را ببند
+                out.push(current);
+                // کلمه را کامل به خط بعد ببر (بدون نصف شدن)
+                current = indent + word;
+            }
+        }
+
+        out.push(current);
+    }
+
+    return out.join("\n");
+}
 
 function setupTerminalTyping() {
     const codeEl = document.querySelector("#terminalText");
@@ -74,13 +110,16 @@ function setupTerminalTyping() {
     ];
 
     const fullText = codeLines.join("\n");
+    // فقط روی نسخه‌های ریسپانسیو (موبایل/تبلت)
+    const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+    const finalText = isMobile ? wrapTerminalCode(fullText, 44) : fullText;
     let index = 0;
 
     const type = () => {
         index++;
-        codeEl.textContent = fullText.slice(0, index);
-        if (index < fullText.length) {
-            const delay = fullText[index - 1] === "\n" ? 80 : 25;
+        codeEl.textContent = finalText.slice(0, index);
+        if (index < finalText.length) {
+            const delay = finalText[index - 1] === "\n" ? 80 : 25;
             setTimeout(type, delay);
         }
     };
@@ -114,278 +153,248 @@ function setupScrollAnimations() {
     observed.forEach((el) => observer.observe(el));
 }
 
-function setupTestimonials() {
-    const slider = document.querySelector(".testimonials-slider");
-    const cards = Array.from(document.querySelectorAll(".testimonial-card"));
-    const dots = Array.from(document.querySelectorAll(".testimonial-dots .dot"));
+// function setupTestimonials() {
+//     const slider = document.querySelector(".testimonials-slider");
+//     const cards = Array.from(document.querySelectorAll(".testimonial-card"));
+//     const dots = Array.from(document.querySelectorAll(".testimonial-dots .dot"));
 
-    if (!slider || cards.length === 0 || dots.length === 0) return;
+//     if (!slider || cards.length === 0 || dots.length === 0) return;
 
-    let index = 0;
-    let timer = null;
+//     let index = 0;
+//     let timer = null;
 
-    // برای تشخیص اینکه کاربر در حال تعامل است یا نه
-    let isHover = false;      // برای دسکتاپ
-    let isTouching = false;   // برای موبایل
-    let startX = 0;
-    let deltaX = 0;
+//     // برای تشخیص اینکه کاربر در حال تعامل است یا نه
+//     let isHover = false;      // برای دسکتاپ
+//     let isTouching = false;   // برای موبایل
+//     let startX = 0;
+//     let deltaX = 0;
 
-    const AUTO_DELAY = 8000;   // فاصله زمانی بین اسلایدها (میلی‌ثانیه)
-    const SWIPE_THRESHOLD = 40; // حداقل جابجایی انگشت برای تشخیص سوایپ
+//     const AUTO_DELAY = 8000;   // فاصله زمانی بین اسلایدها (میلی‌ثانیه)
+//     const SWIPE_THRESHOLD = 40; // حداقل جابجایی انگشت برای تشخیص سوایپ
 
-    // نمایش یک اسلاید (با لوپ بی‌نهایت)
-    const show = (i) => {
-        const total = cards.length;
-        index = (i + total) % total;  // این خط حلقه بی‌نهایت را تضمین می‌کند
+//     // نمایش یک اسلاید (با لوپ بی‌نهایت)
+//     const show = (i) => {
+//         const total = cards.length;
+//         index = (i + total) % total;  // این خط حلقه بی‌نهایت را تضمین می‌کند
 
-        cards.forEach((card, idx) =>
-            card.classList.toggle("is-active", idx === index)
-        );
-        dots.forEach((dot, idx) =>
-            dot.classList.toggle("is-active", idx === index)
-        );
-    };
+//         cards.forEach((card, idx) =>
+//             card.classList.toggle("is-active", idx === index)
+//         );
+//         dots.forEach((dot, idx) =>
+//             dot.classList.toggle("is-active", idx === index)
+//         );
+//     };
 
-    const next = () => show(index + 1);
-    const prev = () => show(index - 1);
+//     const next = () => show(index + 1);
+//     const prev = () => show(index - 1);
 
-    const stopAuto = () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-    };
+//     const stopAuto = () => {
+//         if (timer) clearInterval(timer);
+//         timer = null;
+//     };
 
-    const startAuto = () => {
-        stopAuto();
-        timer = setInterval(() => {
-            // فقط وقتی که کاربر در حال تعامل نباشد
-            if (!isHover && !isTouching) {
-                next();
-            }
-        }, AUTO_DELAY);
-    };
+//     const startAuto = () => {
+//         stopAuto();
+//         timer = setInterval(() => {
+//             // فقط وقتی که کاربر در حال تعامل نباشد
+//             if (!isHover && !isTouching) {
+//                 next();
+//             }
+//         }, AUTO_DELAY);
+//     };
 
-    // کلیک روی دات‌ها (هم دسکتاپ هم موبایل)
-    dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-            const i = Number(dot.dataset.index || "0");
-            show(i);
-            startAuto();
-        });
-    });
+//     // کلیک روی دات‌ها (هم دسکتاپ هم موبایل)
+//     dots.forEach((dot) => {
+//         dot.addEventListener("click", () => {
+//             const i = Number(dot.dataset.index || "0");
+//             show(i);
+//             startAuto();
+//         });
+//     });
 
-    // توقف خودکار وقتی موس روی اسلایدر است (دسکتاپ)
-    slider.addEventListener("mouseenter", () => {
-        isHover = true;
-    });
+//     // توقف خودکار وقتی موس روی اسلایدر است (دسکتاپ)
+//     slider.addEventListener("mouseenter", () => {
+//         isHover = true;
+//     });
 
-    slider.addEventListener("mouseleave", () => {
-        isHover = false;
-    });
+//     slider.addEventListener("mouseleave", () => {
+//         isHover = false;
+//     });
 
-    // سوایپ افقی روی موبایل
-    slider.addEventListener(
-        "touchstart",
-        (e) => {
-            if (e.touches.length !== 1) return;
-            isTouching = true;
-            startX = e.touches[0].clientX;
-            deltaX = 0;
-        },
-        { passive: true }
-    );
+//     // سوایپ افقی روی موبایل
+//     slider.addEventListener(
+//         "touchstart",
+//         (e) => {
+//             if (e.touches.length !== 1) return;
+//             isTouching = true;
+//             startX = e.touches[0].clientX;
+//             deltaX = 0;
+//         },
+//         { passive: true }
+//     );
 
-    slider.addEventListener(
-        "touchmove",
-        (e) => {
-            if (!isTouching) return;
-            deltaX = e.touches[0].clientX - startX;
-        },
-        { passive: true }
-    );
+//     slider.addEventListener(
+//         "touchmove",
+//         (e) => {
+//             if (!isTouching) return;
+//             deltaX = e.touches[0].clientX - startX;
+//         },
+//         { passive: true }
+//     );
 
-    slider.addEventListener("touchend", () => {
-        if (!isTouching) return;
+//     slider.addEventListener("touchend", () => {
+//         if (!isTouching) return;
 
-        if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-            if (deltaX < 0) {
-                // سوایپ به چپ → نظر بعدی
-                next();
-            } else {
-                // سوایپ به راست → نظر قبلی
-                prev();
-            }
-        }
+//         if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+//             if (deltaX < 0) {
+//                 // سوایپ به چپ → نظر بعدی
+//                 next();
+//             } else {
+//                 // سوایپ به راست → نظر قبلی
+//                 prev();
+//             }
+//         }
 
-        isTouching = false;
-        deltaX = 0;
-        startAuto(); // بعد از سوایپ دوباره اسلاید خودکار را راه‌اندازی کن
-    });
+//         isTouching = false;
+//         deltaX = 0;
+//         startAuto(); // بعد از سوایپ دوباره اسلاید خودکار را راه‌اندازی کن
+//     });
 
-    // شروع اولیه
-    show(0);
-    startAuto();
-}
+//     // شروع اولیه
+//     show(0);
+//     startAuto();
+// }
 
 
 // =========================
 // Testimonials carousel
 // =========================
+function setupTestimonialsCarousel() {
+    const slider = document.querySelector(".testimonials-slider");
+    const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
+    const testimonialDots = Array.from(document.querySelectorAll(".testimonial-dots .dot"));
+    const prevTestimonialBtn = document.querySelector(".testimonial-prev");
+    const nextTestimonialBtn = document.querySelector(".testimonial-next");
 
-const slider = document.querySelector(".testimonials-slider");
-const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
-const testimonialDots = Array.from(document.querySelectorAll(".testimonial-dots .dot"));
-const prevTestimonialBtn = document.querySelector(".testimonial-prev");
-const nextTestimonialBtn = document.querySelector(".testimonial-next");
+    if (!slider || testimonialCards.length === 0) return;
 
-const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+    const mobileMQ = window.matchMedia("(max-width: 768px)");
 
-let currentTestimonial = 0;
-let testimonialTimer;
-let isUserInteracting = false;
+    let currentTestimonial = 0;
+    let testimonialTimer = null;
+    let isUserInteracting = false;
 
-/* ---------- ۱) لوپ مخفی در موبایل (اسکرول افقی بینهایت) ---------- */
+    const AUTO_DELAY = 8000;
 
-let mobileLoopWidth = 0;
-
-if (slider && isMobile()) {
-    // یک‌بار دیگر کارت‌ها را کپی می‌کنیم تا حلقه بسازیم
-    const originals = Array.from(slider.children);
-    originals.forEach(card => slider.appendChild(card.cloneNode(true)));
-
-    // نصفِ کل اسکرول‌ویدث = طول مجموعه‌ی اصلی
-    mobileLoopWidth = slider.scrollWidth / 2;
-
-    slider.addEventListener("scroll", () => {
-        if (!mobileLoopWidth) return;
-        if (slider.scrollLeft >= mobileLoopWidth) {
-            slider.scrollLeft -= mobileLoopWidth; // برگشت نامحسوس به اول
-        } else if (slider.scrollLeft <= 0) {
-            slider.scrollLeft += mobileLoopWidth;
-        }
-    });
-}
-
-/* ---------- ۲) چیدمان سه‌لایه در دسکتاپ ---------- */
-
-function layoutTestimonials() {
-    const total = testimonialCards.length;
-    if (!total || !slider) return;
-
-    // در موبایل از اسکرول افقی استفاده می‌کنیم، نه این چیدمان
-    if (isMobile()) {
-        testimonialDots.forEach((dot, index) => {
-            dot.classList.toggle("is-active", index === currentTestimonial);
-        });
-        return;
+    function setDots() {
+        if (!testimonialDots.length) return;
+        testimonialDots.forEach((dot, i) => dot.classList.toggle("is-active", i === currentTestimonial));
     }
 
-    testimonialCards.forEach((card, index) => {
-        const rawOffset = index - currentTestimonial;
-        let offset = rawOffset;
+    function layoutTestimonials() {
+        const total = testimonialCards.length;
+        if (!total) return;
 
-        // حلقه‌ای کردن ترتیب
-        if (rawOffset > total / 2) offset = rawOffset - total;
-        if (rawOffset < -total / 2) offset = rawOffset + total;
-
-        let shift = 0;
-        let scale = 0.8;
-        let opacity = 0;
-        let z = 0;
-
-        if (offset === 0) {
-            // کارت وسط (بزرگ)
-            shift = 0;
-            scale = 1;
-            opacity = 1;
-            z = 3;
-            card.style.pointerEvents = "auto";
-        } else if (offset === 1 || offset === -1) {
-            // دو تای کناری
-            shift = -offset * 140; // RTL
-            scale = 0.9;
-            opacity = 0.9;
-            z = 2;
-            card.style.pointerEvents = "auto";
-        } else if (offset === 2 || offset === -2) {
-            // دو تای بعدی
-            shift = -offset * 220;
-            scale = 0.8;
-            opacity = 0.6;
-            z = 1;
-            card.style.pointerEvents = "none";
-        } else {
-            // بقیه پنهان
-            shift = -offset * 260;
-            scale = 0.75;
-            opacity = 0;
-            z = 0;
-            card.style.pointerEvents = "none";
+        // موبایل: چیدمان را CSS انجام می‌دهد (اسکرول افقی)
+        if (mobileMQ.matches) {
+            setDots();
+            return;
         }
 
-        card.style.setProperty("--shift", shift + "px");
-        card.style.setProperty("--scale", scale);
-        card.style.setProperty("--opacity", opacity);
-        card.style.setProperty("--z", z);
-    });
+        testimonialCards.forEach((card, index) => {
+            const rawOffset = index - currentTestimonial;
+            let offset = rawOffset;
 
-    testimonialDots.forEach((dot, index) => {
-        dot.classList.toggle("is-active", index === currentTestimonial);
-    });
-}
+            // حلقه‌ای کردن ترتیب (برای چیدمان سه‌لایه)
+            if (rawOffset > total / 2) offset = rawOffset - total;
+            if (rawOffset < -total / 2) offset = rawOffset + total;
 
-function goToTestimonial(index) {
-    const total = testimonialCards.length;
-    currentTestimonial = (index + total) % total;
-    layoutTestimonials();
-}
+            let shift = 0;
+            let scale = 0.8;
+            let opacity = 0;
+            let z = 0;
 
-function nextTestimonial() {
-    goToTestimonial(currentTestimonial + 1);
-}
+            if (offset === 0) {
+                shift = 0;
+                scale = 1;
+                opacity = 1;
+                z = 3;
+                card.style.pointerEvents = "auto";
+            } else if (offset === 1 || offset === -1) {
+                shift = -offset * 140; // RTL
+                scale = 0.9;
+                opacity = 0.9;
+                z = 2;
+                card.style.pointerEvents = "auto";
+            } else if (offset === 2 || offset === -2) {
+                shift = -offset * 220;
+                scale = 0.8;
+                opacity = 0.6;
+                z = 1;
+                card.style.pointerEvents = "none";
+            } else {
+                shift = -offset * 260;
+                scale = 0.75;
+                opacity = 0;
+                z = 0;
+                card.style.pointerEvents = "none";
+            }
 
-function prevTestimonial() {
-    goToTestimonial(currentTestimonial - 1);
-}
+            card.style.setProperty("--shift", shift + "px");
+            card.style.setProperty("--scale", scale);
+            card.style.setProperty("--opacity", opacity);
+            card.style.setProperty("--z", z);
+        });
 
-/* ---------- ۳) اسکرول افقی در موبایل ---------- */
+        setDots();
+    }
 
-function scrollMobile(direction) {
-    if (!slider) return;
-    const card = slider.querySelector(".testimonial-card");
-    if (!card) return;
+    function goToTestimonial(i) {
+        const total = testimonialCards.length;
+        currentTestimonial = (i + total) % total;
+        layoutTestimonials();
+    }
 
-    const gap = 12; // حدود فاصله بین کارت‌ها
-    const step = card.offsetWidth + gap;
+    function nextTestimonial() {
+        goToTestimonial(currentTestimonial + 1);
+    }
 
-    slider.scrollBy({
-        left: direction === "next" ? step : -step,
-        behavior: "smooth"
-    });
-}
+    function prevTestimonial() {
+        goToTestimonial(currentTestimonial - 1);
+    }
 
-/* ---------- ۴) کنترل اسلاید خودکار + مکث هنگام تعامل ---------- */
+    // موبایل: اسکرول افقی با دکمه‌ها
+    function scrollMobile(direction) {
+        const card = slider.querySelector(".testimonial-card");
+        if (!card) return;
 
-function startAuto() {
-    if (testimonialTimer) clearInterval(testimonialTimer);
-    testimonialTimer = setInterval(() => {
-        // فقط وقتی که کاربر در حال تعامل نباشد و روی دسکتاپ باشیم
-        if (!isUserInteracting && !isMobile()) {
-            nextTestimonial();
-        }
-    }, 8000);
-}
+        const gap = 12;
+        const step = card.offsetWidth + gap;
+        const isRTL = getComputedStyle(document.documentElement).direction === "rtl";
+        const delta = (direction === "next" ? step : -step) * (isRTL ? -1 : 1);
+        
+        slider.scrollBy({
+          left: delta,
+          behavior: "smooth"
+        });
+        
+    }
 
-function stopAuto() {
-    if (testimonialTimer) clearInterval(testimonialTimer);
-}
+    function startAuto() {
+        stopAuto();
+        testimonialTimer = setInterval(() => {
+            if (!isUserInteracting && !mobileMQ.matches) {
+                nextTestimonial();
+            }
+        }, AUTO_DELAY);
+    }
 
-/* ---------- ۵) راه‌اندازی و لیسنرها ---------- */
+    function stopAuto() {
+        if (testimonialTimer) clearInterval(testimonialTimer);
+        testimonialTimer = null;
+    }
 
-if (testimonialCards.length) {
-    layoutTestimonials();
-    startAuto();
-
-    // دات‌ها
+    // --- دات‌ها
     testimonialDots.forEach((dot, index) => {
         dot.addEventListener("click", () => {
             isUserInteracting = true;
@@ -394,25 +403,21 @@ if (testimonialCards.length) {
         });
     });
 
-    // کارت‌ها
+    // --- کلیک روی کارت‌ها (دسکتاپ: بیا وسط)
     testimonialCards.forEach((card, index) => {
         card.addEventListener("click", () => {
-            // روی موبایل کلیک فقط اسکرول نمی‌کند؛ ولی اشکالی ندارد
             isUserInteracting = true;
             goToTestimonial(index);
             startAuto();
         });
     });
 
-    // فلش‌ها
+    // --- فلش‌ها (موبایل: اسکرول / دسکتاپ: چیدمان)
     if (nextTestimonialBtn) {
         nextTestimonialBtn.addEventListener("click", () => {
             isUserInteracting = true;
-            if (isMobile()) {
-                scrollMobile("next");
-            } else {
-                nextTestimonial();
-            }
+            if (mobileMQ.matches) scrollMobile("next");
+            else nextTestimonial();
             startAuto();
         });
     }
@@ -420,32 +425,63 @@ if (testimonialCards.length) {
     if (prevTestimonialBtn) {
         prevTestimonialBtn.addEventListener("click", () => {
             isUserInteracting = true;
-            if (isMobile()) {
-                scrollMobile("prev");
-            } else {
-                prevTestimonial();
-            }
+            if (mobileMQ.matches) scrollMobile("prev");
+            else prevTestimonial();
             startAuto();
         });
     }
 
-    // مکث/ادامه‌ی خودکار با Hover و Touch
+    // --- موبایل: وقتی کاربر دستی اسکرول کرد، دات فعال هماهنگ شود
+    let scrollRAF = null;
+    slider.addEventListener("scroll", () => {
+        if (!mobileMQ.matches) return;
+
+        isUserInteracting = true;
+
+        if (scrollRAF) cancelAnimationFrame(scrollRAF);
+        scrollRAF = requestAnimationFrame(() => {
+            const cards = Array.from(slider.querySelectorAll(".testimonial-card"));
+            const sliderRect = slider.getBoundingClientRect();
+            const center = sliderRect.left + sliderRect.width / 2;
+
+            let bestIndex = 0;
+            let bestDist = Infinity;
+
+            cards.forEach((c, i) => {
+                const r = c.getBoundingClientRect();
+                const cCenter = r.left + r.width / 2;
+                const dist = Math.abs(center - cCenter);
+                if (dist < bestDist) {
+                    bestDist = dist;
+                    bestIndex = i;
+                }
+            });
+
+            // چون در موبایل clone نداریم، bestIndex همان index واقعی است
+            currentTestimonial = Math.min(bestIndex, testimonialCards.length - 1);
+            setDots();
+        });
+    }, { passive: true });
+
+    // --- مکث تعامل
     const interactiveElems = [slider, prevTestimonialBtn, nextTestimonialBtn, ...testimonialCards, ...testimonialDots].filter(Boolean);
 
-    interactiveElems.forEach(el => {
-        el.addEventListener("mouseenter", () => {
-            isUserInteracting = true;
-        });
-        el.addEventListener("mouseleave", () => {
-            isUserInteracting = false;
-        });
-        el.addEventListener("touchstart", () => {
-            isUserInteracting = true;
-        }, { passive: true });
-        el.addEventListener("touchend", () => {
-            isUserInteracting = false;
-        }, { passive: true });
+    interactiveElems.forEach((el) => {
+        el.addEventListener("mouseenter", () => { isUserInteracting = true; });
+        el.addEventListener("mouseleave", () => { isUserInteracting = false; });
+        el.addEventListener("touchstart", () => { isUserInteracting = true; }, { passive: true });
+        el.addEventListener("touchend", () => { isUserInteracting = false; }, { passive: true });
     });
+
+    // اگر اندازه عوض شد (چرخش موبایل/ریسایز)، دوباره layout کن
+    mobileMQ.addEventListener?.("change", () => {
+        layoutTestimonials();
+        startAuto();
+    });
+
+    // شروع
+    layoutTestimonials();
+    startAuto();
 }
 
 /* =========================
