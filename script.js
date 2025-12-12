@@ -46,7 +46,7 @@ function setupNav() {
 /* =========================
    Terminal Typing Animation
    ========================= */
-   function wrapTerminalCode(text, maxChars) {
+function wrapTerminalCode(text, maxChars) {
     const lines = text.split("\n");
     const out = [];
 
@@ -81,40 +81,50 @@ function setupNav() {
 
     return out.join("\n");
 }
-
 function setupTerminalTyping() {
     const codeEl = document.querySelector("#terminalText");
     if (!codeEl) return;
 
-    const codeLines = [
-        "# mobile_photos_organizer.py",
-        "",
-        "from pathlib import Path",
-        "from datetime import datetime",
-        "",
-        "downloads = Path.home() / \"Downloads\"",
-        "photos_root = Path.home() / \"Pictures\" / \"mobile\"",
-        "current_year = datetime.now().year",
-        "",
-        "for file in downloads.iterdir():",
-        "    if file.suffix.lower() in {'.jpg', '.jpeg', '.png', '.heic'}:",
-        "        mtime = file.stat().st_mtime",
-        "        taken = datetime.fromtimestamp(mtime)",
-        "        if taken.year == current_year:",
-        "            month = taken.strftime('%m')",
-        "            target = photos_root / str(current_year) / month",
-        "            target.mkdir(parents=True, exist_ok=True)",
-        "            file.rename(target / file.name)",
-        "",
-        "# one script, a clean photo library ✨"
+    // نسخه دسکتاپ: هر کد به صورت آرایه خطوط
+    const desktopCodes = [
+        [/*کد پایتون*/"# mobile_photos_organizer.py", "", "from pathlib import Path", "from datetime import datetime", "", "downloads = Path.home() / \"Downloads\"", "photos_root = Path.home() / \"Pictures\" / \"mobile\"", "current_year = datetime.now().year", "", "for file in downloads.iterdir():", "    if file.suffix.lower() in {'.jpg', '.jpeg', '.png', '.heic'}:", "        mtime = file.stat().st_mtime", "        taken = datetime.fromtimestamp(mtime)", "        if taken.year == current_year:", "            month = taken.strftime('%m')", "            target = photos_root / str(current_year) / month", "            target.mkdir(parents=True, exist_ok=True)", "            file.rename(target / file.name)", "", "# one script, a clean photo library ✨"],
+        [/*کد اسمبلی*/"MOV AX, 0      ; Clear AX register", "MOV AH, 09h        ; DOS print string function", "LEA DX, msg        ; Load address of message", "INT 21h            ; Call DOS interrupt", "MOV AH, 4Ch        ; DOS terminate program", "INT 21h            ; Call DOS interrupt", "", "msg DB '> ride on Assembly! <$'", "", "; Data segment (not required for small example)", "; Normally you'd have segments defined", "; but for inline example this is enough", "", "; Additional filler instructions to reach ~18 lines", "MOV CX, 0          ; Clear CX", "INC CX             ; Increment CX", "MOV DX, CX         ; Copy CX to DX", "NOP                ; No operation", "NOP", "NOP", "MOV CX, 0FFFFh ; Mark end of program in CX"],        
+        [/*کد سی‌پلاس‌پلاس*/"#include <iostream>", "#include <string>", "#include <vector>", "using namespace std;", "struct Transaction {", "    string description;", "    double amount;", "};", "vector<Transaction> transactions;", "transactions.push_back({\"Salary\", 2500.0});", "transactions.push_back({\"Groceries\", -150.0});", "transactions.push_back({\"Utilities\", -200.0});", "transactions.push_back({\"Coffee\", -5.0});", "double balance = 0;", "for (auto &t : transactions) {", "    balance += t.amount;", "    cout << t.description << \": \" << t.amount << endl;", "}", "cout << \"Current balance: \" << balance << endl;"],
+        [/*کد جاوا*/"; Java Home Location Tracker","import java.util.*;","class Location {","  double lat;","  double lon;","  String desc;","  Location(double la, double lo, String d){","    lat=la;","    lon=lo;","    desc=d;","  }","}","public class Main {","  public static void main(String[] args){","    List<Location> locs = new ArrayList<>();","    locs.add(new Location(35.6895,51.389,\"Home\"));","    locs.add(new Location(35.7000,51.400,\"Office\"));","    for(Location l:locs){","      System.out.println(l.desc+\": Lat=\"+l.lat+\", Lon=\"+l.lon);","    }","  }","}"],
+        [/*کد Go*/"package main", "import (", "  \"fmt\"", "  \"io/ioutil\"", "  \"net/http\"", ")", "func main() {", "  url := \"https://jsonplaceholder.typicode.com/todos/1\"", "  resp, err := http.Get(url)", "  if err != nil {", "    fmt.Println(\"Error:\", err)", "    return", "  }", "  defer resp.Body.Close()", "  body, err := ioutil.ReadAll(resp.Body)", "  if err != nil {", "    fmt.Println(\"Read Error:\", err)", "    return", "  }", "  fmt.Println(\"API Response:\")", "  fmt.Println(string(body))", "}"],
+        [/*کد Swift*/"import Foundation", "let fm = FileManager.default", "let home = fm.homeDirectoryForCurrentUser", "let desktop = home.appendingPathComponent(\"Desktop\")", "do {", "  let items = try fm.contentsOfDirectory(atPath: desktop.path)", "  for i in items {", "    let src = desktop.appendingPathComponent(i)", "    if i.hasSuffix(\".tmp\") || i.hasSuffix(\".log\") {", "      try fm.removeItem(at: src)", "    }", "  }", "} catch {", "  print(\"Error:\", error)", "}"],
+        [/*کد Kotlin*/"fun main() {", "  val players = listOf(\"Ali\", \"Sara\", \"Mina\")", "  val actions = mutableListOf<Pair<String,String>>()", "  actions.add(\"Ali\" to \"rolled dice 4\")", "  actions.add(\"Sara\" to \"moved 3 steps\")", "  actions.add(\"Mina\" to \"collected coin\")", "  actions.add(\"Ali\" to \"attacked Sara\")", "  actions.add(\"Sara\" to \"healed 2 points\")", "  actions.add(\"Mina\" to \"rolled dice 6\")", "  actions.add(\"Ali\" to \"found treasure\")", "  actions.add(\"Sara\" to \"skipped turn\")", "  actions.add(\"Mina\" to \"used shield\")", "  for((p,a) in actions) {", "    println(p+\": \"+a)", "  }", "  println(\"Total actions:\", actions.size)", "  println(\"Summary of game:\")", "  for((p,a) in actions) { println(p+\" did \"+a) }", "  println(\"Last action:\", actions.last().second)", "}"],
+        [/*کد R*/"library(readxl)", "df <- read_excel(\"codbanoo.xlsx\")", "print(\"Columns:\")", "for(col in names(df)) {", "  print(paste(\"Column:\", col))", "}", "print(\"Summaries:\")", "for(col in names(df)) {", "  print(summary(df[[col]]))", "}", "total_income = 0", "total_expense = 0", "for(col in names(df)) {", "  if(grepl(\"Income\", col)) {", "    total_income = sum(df[[col]], na.rm=TRUE)", "  } else {", "    total_expense = sum(df[[col]], na.rm=TRUE)", "  }", "}", "balance = total_income - total_expense", "print(paste(\"Total Income:\", total_income))", "print(paste(\"Total Expense:\", total_expense))", "print(paste(\"Balance:\", balance))"],
+        [/*کد Lua*/"player = {score=0, health=100, coins=50, inventory={}}", "print(\"Initial score:\", player.score)", "print(\"Health:\", player.health)", "print(\"Coins:\", player.coins)", "player.score = player.score + 5000", "player.health = player.health - 10", "table.insert(player.inventory, \"Sword\")", "table.insert(player.inventory, \"Shield\")", "print(\"Updated score:\", player.score)", "print(\"Updated Health:\", player.health)", "print(\"Coins remain:\", player.coins)", "print(\"Inventory:\")", "for i,item in ipairs(player.inventory) do", "  print(i,item)", "end", "player.coins = player.coins + 500", "player.health = player.health + 20", "player.score = player.score + 4999", "print(\"Final stats:\")", "print(player)"]
     ];
 
-    const fullText = codeLines.join("\n");
-    // فقط روی نسخه‌های ریسپانسیو (موبایل/تبلت)
-    const isMobile = window.matchMedia("(max-width: 1024px)").matches;
-    const finalText = isMobile ? wrapTerminalCode(fullText, 44) : fullText;
-    let index = 0;
+    // نسخه موبایل: خطوط کوتاه‌تر
+    const mobileCodes = [
+        [/*کد جاوااسکریپت*/"if (username.status !== \"banned\") {", "    let getData = prompt(\"Your Key:\");", "} else {", "    console.log(\"NOT MATCH!\");", "} // Welcome to JavaScript😃"],
+        [/*Swift موبایل*/"import Foundation", "let batteryLevel = 78", "if batteryLevel > 50 {", "  print(\"Battery is healthy\")", "} else { print(\"Charge soon!\") }"],
+        [/*Kotlin موبایل*/"fun main(){", "val players=listOf(\"Ali\",\"Sara\",\"Mina\")", "val actions=mutableListOf(\"roll dice\",\"collect coin\")", "actions.forEach{ println(it) }", "println(\"Players in game:\",players.size) }"],
+        [/*R موبایل*/"library(readxl)", "df<-read_excel(\"codbanoo.xlsx\")", "total<-sum(df$Income,na.rm=TRUE)", "print(paste(\"Total Income:\",total))", "print(paste(\"Average:\",mean(df$Income)))"],
+        [/*Lua موبایل*/"player={score=0,coins=50}", "player.score=player.score+100", "player.coins=player.coins+20", "print(\"Score:\",player.score)", "print(\"Coins:\",player.coins)"],
+        [/*Python موبایل*/"username=input('Enter username:')", "if username!='banned':", " key=input('Enter Key:')", " print('Access granted for',username)", "else: print('ACCESS DENIED!')"],
+        [/*C++ موبایل*/"#include <iostream>", "using namespace std;", "double income=1000.0;", "double expense=200.0;", "cout<<\"Balance: \"<<income-expense<<endl;"],
+        [/*Java موبایل*/"class Main{", "public static void main(String[] args){", "double lat=35.6895,lon=51.389;", "System.out.println(\"Home: Lat=\"+lat+\", Lon=\"+lon);", "}"],
+        [/*Go موبایل*/"package main", "import (\"fmt\";\"net/http\")", "func main(){", "resp,_:=http.Get(\"https://codbanoo.ir/CRM/1\")", "fmt.Println(resp.Status) }"],
+        [/*C موبایل*/"#include <stdio.h>", "int main(){", "printf(\"Hello Mobile User!\\n\");", "return 0;", "}"],
+        [/*HTML موبایل*/"<div class='card'>", "<h3>Welcome!</h3>", "<p>Mobile dashboard</p>", "</div>"],
+        [/*CSS موبایل*/".card {", "background:#f0f0f0;", "padding:10px;", "border-radius:5px;", "text-align:center; }"]
+    ];
 
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const codePool = isMobile ? mobileCodes : desktopCodes;
+
+    // انتخاب تصادفی یک کد
+    const selectedCode = codePool[Math.floor(Math.random() * codePool.length)];
+
+    // تبدیل آرایه خطوط به رشته نهایی با newline
+    const finalText = selectedCode.join("\n");
+
+    // تایپ کردن روی ترمینال
+    let index = 0;
     const type = () => {
         index++;
         codeEl.textContent = finalText.slice(0, index);
@@ -126,6 +136,9 @@ function setupTerminalTyping() {
 
     type();
 }
+
+
+
 
 /* =========================
    Scroll Animations
