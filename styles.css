@@ -1222,21 +1222,45 @@ button {
 
 /* ردیف لوگوهای اعتماد (اینماد + ساماندهی) */
 .trust-badges{
-    margin-top: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-  
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: nowrap;           /* ✅ همیشه کنار هم */
+}
+
+.trust-badges > a{
+  display: inline-flex;
+  align-items: center;
+}
+
+/* اندازه پیش‌فرض (ویندوز/دسکتاپ) */
 .trust-badge-img{
-    height: 120px;      /* ویندوز */
-    width: auto;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.92);
-    padding: 6px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  height: 100px;                /* همون چیزی که خودت گذاشتی */
+  width: auto;
+  max-width: 180px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.92);
+  padding: 6px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* موبایل: کوچکترش کن که حتما کنار هم جا بشن */
+@media (max-width: 768px){
+  .trust-badge-img{
+    height: 56px;
+    max-width: 46vw;
   }
+}
+
+/* خیلی کوچک‌ها (اختیاری ولی مفید) */
+@media (max-width: 420px){
+  .trust-badge-img{
+    height: 48px;
+    padding: 5px;
+  }
+}
+
 
 /* Bottom */
 
@@ -1459,11 +1483,8 @@ button {
         padding: 0.35rem 0.9rem;
     }
 }
-/* موبایل */
+/* لوگوهای اینماد و ساماندهی در موبایل */
 @media (max-width: 768px){
-    .trust-badge-img{ height: 140px; }
+    .trust-badge-img{ height: 100px; }
   }
   
-
-
-
