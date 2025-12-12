@@ -1251,15 +1251,15 @@ button {
     justify-content: center;   /* ✅ فقط اینجا */
   }
   .trust-badge-img{
-    height: 95px;
-    max-width: 85vw;
+    height: 195px;
+    max-width: 185vw;
   }
 }
 
 /* خیلی کوچک‌ها */
 @media (max-width: 420px){
   .trust-badge-img{
-    height: 80px;
+    height: 180px;
     padding: 5px;
   }
 }
@@ -1491,6 +1491,7 @@ button {
     .trust-badge-img{ height: 100px; }
   }
   
+
 
 
 
