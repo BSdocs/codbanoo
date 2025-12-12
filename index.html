@@ -332,12 +332,46 @@
     
     <!-- 📌 ریسپانسیو موبایل -->
     <style>
-    @media (max-width: 768px) {
+    @media (max-width: 768px) {    
+        /* فاصله کادر سبز از دیواره موبایل */
+        .skill-section {
+            margin: 1.5rem 0.9rem !important;   /* فاصله واقعی از لبه موبایل */
+            padding: 1.6rem 1.2rem !important;  /* padding متعادل */
+            border-radius: 18px;
+        }
+        /* چیدمان عمودی */
         .skill-wrapper {
-            flex-direction: column-reverse !important; /* ویدئو بالا / متن پایین */
+            flex-direction: column-reverse !important;
+            gap: 1.2rem !important; /* فاصله منطقی متن و ویدئو */
+        }
+        /* ویدئو: بدون فاصله اضافی */
+        .skill-video {
+            width: 100%;
+            margin: 0;
+        }        
+        .h_iframe-aparat_embed_frame {
+            margin: 0;                /* ❗ فاصله اضافی حذف */
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        iframe {
+            border-radius: 14px;
+        }
+            /* متن‌ها */
+        .skill-text h2 {
+            font-size: 22px !important;
+            margin-bottom: 0.7rem !important;
+            line-height: 1.6;
+        }
+        .skill-text p {
+            font-size: 15.5px !important;
+            line-height: 1.85 !important;
+            margin-top: 0.7rem !important;
         }
     }
     </style>
+        
+
     
     <!-- FEATURE 3 -->
     <section class="feature-section">
