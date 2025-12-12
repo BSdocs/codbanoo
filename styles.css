@@ -1226,7 +1226,7 @@ button {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  flex-wrap: nowrap;           /* ✅ همیشه کنار هم */
+  flex-wrap: nowrap;     /* همیشه کنار هم */
 }
 
 .trust-badges > a{
@@ -1234,9 +1234,9 @@ button {
   align-items: center;
 }
 
-/* اندازه پیش‌فرض (ویندوز/دسکتاپ) */
+/* دسکتاپ */
 .trust-badge-img{
-  height: 100px;                /* همون چیزی که خودت گذاشتی */
+  height: 100px;
   width: auto;
   max-width: 180px;
   border-radius: 12px;
@@ -1245,22 +1245,23 @@ button {
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
 
-/* موبایل: کوچکترش کن که حتما کنار هم جا بشن */
+/* فقط موبایل: وسط‌چین */
 @media (max-width: 768px){
+  .trust-badges{
+    justify-content: center;   /* ✅ فقط اینجا */
+  }
   .trust-badge-img{
     height: 65px;
     max-width: 55vw;
   }
-  .trust-badges{ justify-content: center;}
 }
 
-/* خیلی کوچک‌ها (اختیاری ولی مفید) */
+/* خیلی کوچک‌ها */
 @media (max-width: 420px){
   .trust-badge-img{
     height: 50px;
     padding: 5px;
   }
-  .trust-badges{ justify-content: center;}
 }
 
 
@@ -1490,4 +1491,5 @@ button {
     .trust-badge-img{ height: 100px; }
   }
   
+
 
