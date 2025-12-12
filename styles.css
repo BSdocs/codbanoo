@@ -80,6 +80,13 @@ body {
 body.nav-open {
     overflow: hidden;
 }
+/* وقتی منوی موبایل باز است، نوار پیشرفت اسکرول دیده نشود */
+body.nav-open .scroll-progress-bar{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 
 img {
     max-width: 100%;
@@ -1492,3 +1499,4 @@ button {
     .trust-badge-img{ height: 100px; }
   }
   
+
