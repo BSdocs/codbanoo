@@ -1248,17 +1248,19 @@ button {
 /* موبایل: کوچکترش کن که حتما کنار هم جا بشن */
 @media (max-width: 768px){
   .trust-badge-img{
-    height: 56px;
-    max-width: 46vw;
+    height: 65px;
+    max-width: 55vw;
   }
+  .trust-badges{ justify-content: center;}
 }
 
 /* خیلی کوچک‌ها (اختیاری ولی مفید) */
 @media (max-width: 420px){
   .trust-badge-img{
-    height: 48px;
+    height: 50px;
     padding: 5px;
   }
+  .trust-badges{ justify-content: center;}
 }
 
 
@@ -1488,3 +1490,4 @@ button {
     .trust-badge-img{ height: 100px; }
   }
   
+
