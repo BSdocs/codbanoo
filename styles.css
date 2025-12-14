@@ -128,7 +128,7 @@ button {
     height: 4px;
     width: 0%;
     background-color: #2f8f7f;
-    z-index: 9999;
+    z-index: 900;
     transition: width 0.1s linear;
 }
 
@@ -276,7 +276,7 @@ button {
     transform: translateY(6px);
     pointer-events: none;
     transition: opacity 0.18s ease, transform 0.18s ease;
-    z-index: 1000;
+    z-index: 1500;
     max-width: min(760px, 92vw);  /* ✅ باکس اجازه دارد بزرگ شود ولی از صفحه بیرون نزند */
     overflow: visible;
 }
@@ -485,7 +485,7 @@ button {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease;
-    z-index: 1200;
+    z-index: 1500;
     display: flex;
     justify-content: flex-end;
 }
