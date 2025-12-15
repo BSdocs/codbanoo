@@ -52,6 +52,13 @@ body {
 }
 html { scrollbar-gutter: stable; }  /* جلوگیری از تغییر عرض صفحه در ویندوز */
 body { overflow-x: hidden; }        /* جلوگیری از overflow افقی لحظه‌ای هنگام اسلاید */
+input,
+textarea,
+button,
+select{
+  font-family: "Tanha", system-ui, -apple-system, BlinkMacSystemFont;
+}
+
 /* =========================
    Reset & Base
    ========================= */
