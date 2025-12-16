@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>درباره تیم کُدبانو | کُدبانو</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="درباره تیم کُدبانو؛ داستان شکل‌گیری، مسئله‌ای که حل می‌کنیم، طرز فکر تیم، فرآیند کار و چشم‌انداز." />
+
+  <link rel="icon" type="image/svg+xml" href="pics/icons/codbanooICON.svg" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/script.js" defer></script>
+  <script src="/scripts/flowchart.js" defer></script>
+
+  <style>
+    /* ✅ شروع چسبیده به هدر (مثل members) */
+    .about-main{ padding-top: 0 !important; }
+  
+    /* ===== SECTION 1: HERO ===== */
+    .about-hero{
+      padding: 2.2rem 0 1.2rem;
+      background:
+        radial-gradient(circle at 0 0, rgba(197,241,231,0.9) 0, transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(248,215,255,0.9) 0, transparent 55%),
+        #f5f5f5;
+    }
+  
+    /* گرید کلی (متن + ستون عکس) */
+    .about-hero-grid{
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,420px);
+      gap: 1.4rem;
+      align-items: start;
+    }
+    @media (max-width: 900px){
+      .about-hero-grid{ grid-template-columns: 1fr; }
+      .about-hero{ padding: 1.7rem 0 1rem; }
+    }
+  
+    .about-title{
+      margin: 0 0 .6rem;
+      font-family: "Samim","Tanha",system-ui;
+      font-size: 2rem;
+      line-height: 1.4;
+    }
+    @media (max-width: 640px){
+      .about-title{ font-size: 1.55rem; }
+    }
+  
+    .about-sub{
+      margin: 0;
+      color: #444;
+      line-height: 1.9;
+      text-align: justify;
+    }
+  
+    /* ستون سمت عکس */
+    .about-team-side{ position: relative; }
+  
+    /* کارت عکس تیم */
+    .about-team-pic{
+    position: relative;
+    border-radius: 18px;
+
+    /* ✅ مهم: برای بیرون‌زدگی باکس */
+    overflow: visible;
+
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 16px 44px rgba(0,0,0,0.07);
+    }
+
+    /* خود عکس باید گوشه‌های گرد داشته باشد */
+    .about-team-pic img{
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    border-radius: 18px;
+    filter: saturate(1.05);
+    }
+
+    /* ===== باکس مربعی/مستطیلی شیشه‌ای ===== */
+    .team-overlay-box{
+    position: absolute;
+
+    /* جایگاه مرجع: پایینِ راست تصویر */
+    right: 14px;
+    bottom: 14px;
+
+    /* ✅ عریض‌تر برای ویندوز/دسکتاپ */
+    width: 210px;
+    min-height: 140px;
+
+    padding: .95rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .55rem;
+
+    /* ✅ شفاف‌تر و نرم‌تر */
+    background: rgba(255,255,255,0.46);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow: 0 18px 44px rgba(0,0,0,0.16);
+
+    font-size: .9rem;
+    line-height: 1.75;
+    color: #1f1f1f;
+
+    /* ✅ فقط 1/4 هم‌پوشانی:
+        باکس را کمی به بیرونِ تصویر می‌بریم (پایین و راست) */
+    transform: translate(38%, 38%);
+
+    /* ✅ انیمیشن شناور ریز */
+    animation: teamBoxFloat 3.8s ease-in-out infinite;
+
+    transition:
+        transform .35s cubic-bezier(.22,.61,.36,1),
+        box-shadow .35s ease,
+        background .35s ease;
+    }
+
+    .team-overlay-box p{ margin: 0; }
+
+    .team-overlay-box a{
+    color: #2f8f7f;
+    font-weight: 900;
+    text-decoration: none;
+    align-self: flex-start;
+    border-bottom: 1px dashed rgba(47,143,127,.42);
+    padding-bottom: 1px;
+    }
+    .team-overlay-box a:hover{ border-bottom-style: solid; }
+
+    /* هاور: فقط کمی پررنگ‌تر، ولی float حفظ شود */
+    .about-team-pic:hover .team-overlay-box{
+    background: rgba(255,255,255,0.58);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+
+    /* translate ثابت می‌ماند + یک ذره بالا */
+    transform: translate(38%, 38%) translateY(-2px);
+    }
+
+    /* انیمیشن بالا-پایین خیلی ظریف */
+    @keyframes teamBoxFloat{
+    0%, 100%{ translate: 0 0; }
+    50%{ translate: 0 -6px; }
+    }
+
+    /* ✅ موبایل همان حالت قبلی بماند */
+    @media (max-width: 900px){
+    .about-team-pic{ overflow: hidden; } /* موبایل: همان قبلی، تمیز */
+
+    .about-team-pic img{ height: 220px; }
+
+    .team-overlay-box{
+        position: static;
+        width: 100%;
+        min-height: auto;
+        margin-top: .75rem;
+
+        transform: none;
+        animation: none;
+
+        border-radius: 14px;
+        text-align: center;
+        align-items: center;
+        background: rgba(255,255,255,0.68);
+    }
+
+    .team-overlay-box a{ align-self: center; }
+    }
+
+    .team-overlay-box a:hover{ border-bottom-style: solid; }
+  
+    .about-team-pic:hover .team-overlay-box{
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 20px 44px rgba(0,0,0,0.22);
+    }
+  
+    /* موبایل: باکس زیر عکس */
+    @media (max-width: 900px){
+      .team-overlay-box{
+        position: static;
+        width: 100%;
+        min-height: auto;
+        margin-top: .75rem;
+        border-radius: 14px;
+        text-align: center;
+        align-items: center;
+      }
+      .team-overlay-box a{ align-self: center; }
+    }
+  
+    /* ===== Common Glass Card (هم‌خانواده members) ===== */
+    .glass-card{
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 16px 44px rgba(0,0,0,0.07);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+  
+    .about-section{
+      padding: 1.1rem 0 2.4rem;
+      background: #fafafa;
+    }
+  
+    /* ===== SECTION 2: Two columns (Story + Problem) ===== */
+    .two-col{
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+    @media (max-width: 900px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+  
+    .card-inner{ padding: 1.15rem 1.2rem; }
+  
+    .h2{
+      margin: 0 0 .6rem;
+      font-family: "Samim","Tanha",system-ui;
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+  
+    .p{
+      margin: 0;
+      color: #2b2b2b;
+      line-height: 1.95;
+      text-align: justify;
+      font-size: .98rem;
+    }
+  
+    .list{
+      margin: .55rem 0 0;
+      padding-right: 1.2rem;
+      color: #2b2b2b;
+      line-height: 1.95;
+    }
+    .list li{ margin: .22rem 0; }
+  
+    /* ===== SECTION 3: Mindset ===== */
+    .mindset{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 1rem;
+      margin-top: .9rem;
+    }
+    @media (max-width: 900px){
+      .mindset{ grid-template-columns: 1fr; }
+    }
+    .mind{
+      border-radius: 16px;
+      background: rgba(217,243,238,0.35);
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: .95rem 1rem;
+    }
+    .mind-title{
+      margin: 0 0 .35rem;
+      font-weight: 800;
+      color: #111;
+      display:flex;
+      align-items:center;
+      gap:.45rem;
+    }
+    .mind-title .material-icons{
+      font-size: 1.15rem;
+      color: #2f8f7f;
+      vertical-align: -3px;
+    }
+    .mind p{
+      margin:0;
+      color:#2b2b2b;
+      line-height: 1.85;
+      text-align: justify;
+      font-size: .95rem;
+    }
+  
+    /* ===== Flowchart ===== */
+    .flow-wrap{
+      margin-top: .9rem;
+      padding: .9rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 16px 44px rgba(0,0,0,0.07);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+    .flow-note{
+      margin: 0 0 .7rem;
+      color: #555;
+      line-height: 1.9;
+      text-align: justify;
+      font-size: .95rem;
+    }
+    .flow-svg{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .flow-label{
+      font-family: "Tanha", system-ui;
+      font-size: 14px;
+      fill: #111;
+    }
+    .flow-sub{
+      font-family: "Tanha", system-ui;
+      font-size: 12px;
+      fill: #444;
+    }
+  
+    .flow-node{ cursor: pointer; }
+    .flow-node .box, .flow-node .soft, .flow-node .diamond{
+      transition: filter .18s ease, transform .18s ease, stroke .18s ease, fill .18s ease;
+      transform-origin: center;
+    }
+  
+    .flow-node.is-active .box,
+    .flow-node.is-active .soft,
+    .flow-node.is-active .diamond{
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.10));
+      transform: translateY(-1px);
+      stroke: rgba(47,143,127,.55);
+    }
+    .flow-node.is-active .box{ fill: rgba(217,243,238,0.85); }
+    .flow-node.is-active .soft{ fill: rgba(217,243,238,0.95); }
+    .flow-node.is-active .diamond{ fill: rgba(248,215,255,0.75); }
+  
+    .flow-edge{
+      stroke-dasharray: 8 6;
+      opacity: .22;
+      transition: opacity .15s ease;
+    }
+    .flow-edge.is-active{
+      opacity: 1;
+      stroke-width: 3.5;
+      animation: flow-dash 4s linear infinite;
+    }
+    .flow-edge.is-draw{
+      stroke-dashoffset: 240;
+      animation:
+        flow-draw .9s cubic-bezier(.22,.61,.36,1) forwards,
+        flow-dash 4s linear infinite;
+    }
+  
+    @keyframes flow-dash{
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -240; }
+    }
+    @keyframes flow-draw{
+      from { stroke-dashoffset: 240; }
+      to   { stroke-dashoffset: 0; }
+    }
+  
+    /* ===== SECTION 5: End grid ===== */
+    .end-grid{
+      display:grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .end-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <!-- ===== START HEADER (کپی دقیق از members.html) ===== -->
+  <header class="site-header">
+      <div class="container header-inner">
+          <a href="https://codbanoo.ir/" class="logo" draggable="false">
+              <img src="/pics/icons/codbanooICON.svg" alt="لوگوی کُدبانو" class="logo-icon" draggable="false" />
+              <span class="logo-text">کُدبانو</span>
+          </a>
+          <nav class="main-nav">
+              <ul>
+                  <li class="has-submenu">
+                      <a href="/courses">
+                          دوره‌ها
+                          <span class="submenu-arrow">▾</span>
+                      </a>
+
+                      <div class="submenu submenu-wide">
+                          <div class="submenu-section">
+                              <h4>بر اساس سیستم‌عامل</h4>
+                              <ul>
+                                  <li><a href="/courses/window/windows-automation">اسکریپت‌های کاربردی ویندوز</a></li>
+                                  <li><a href="/courses/macOS/mac-automation">خودکارسازی روی مک (macOS)</a></li>
+                                  <li><a href="/courses/linux/linux-automation">ترفندهای ساده در لینوکس</a></li>
+                              </ul>
+                          </div>
+
+                          <div class="submenu-section">
+                              <h4>زبان‌ها و ابزارها</h4>
+                              <ul>
+                                  <li><a href="/courses/python/python-basics">پایتون برای کارهای روزمره</a></li>
+                                  <li><a href="/courses/databases/sql/sql-reports">SQL برای گزارش‌گیری ساده</a></li>
+                                  <li><a href="/courses/web-automation">ابزارهای وب (HTML / Automation)</a></li>
+                              </ul>
+                          </div>
+
+                          <div class="submenu-section">
+                              <h4>مسیرهای پیشنهادی</h4>
+                              <ul>
+                                  <li><a href="/courses/get-started">شروع از صفر برای افراد پرمشغله</a></li>
+                                  <li><a href="/courses/office-routines">خودکارسازی کارهای اداری</a></li>
+                                  <li><a href="/courses/home-digital-life">دیجیتالی‌کردن کارهای خانه</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </li>
+
+                  <li class="has-submenu">
+                      <a href="/scenarios">
+                          سناریوهای واقعی
+                          <span class="submenu-arrow">▾</span>
+                      </a>
+
+                      <div class="submenu">
+                          <div class="submenu-section">
+                              <h4>زندگی روزمره</h4>
+                              <ul>
+                                  <li><a href="/scenarios/home-and-life">مرتب‌سازی پوشه‌های شخصی و عکس‌ها</a></li>
+                                  <li><a href="/scenarios/family-planning">چک‌لیست‌ها و برنامه‌ریزی خانوادگی</a></li>
+                              </ul>
+                          </div>
+
+                          <div class="submenu-section">
+                              <h4>کار و کسب‌وکار</h4>
+                              <ul>
+                                  <li><a href="/scenarios/work-and-business">گزارش‌های خودکار کاری</a></li>
+                                  <li><a href="/scenarios/freelance">مدیریت فایل‌های فریلنسری</a></li>
+                              </ul>
+                          </div>
+
+                          <div class="submenu-section">
+                              <h4>درس و دانشگاه</h4>
+                              <ul>
+                                  <li><a href="/scenarios/study">مرتب‌سازی تکالیف و اسلایدها</a></li>
+                                  <li><a href="/scenarios/research-notes">سازمان‌دهی جزوه‌ها و نوت‌ها</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </li>
+
+                  <li><a href="https://blog.codbanoo.ir/">بلاگ</a></li>
+                  <li><a href="/support">پشتیبانی</a></li>
+
+                  <li class="has-submenu">
+                      <a href="/about">
+                          درباره‌ما
+                          <span class="submenu-arrow">▾</span>
+                      </a>
+
+                      <ul class="submenu">
+                          <li><a href="/about/team">درباره تیم کُدبانو</a></li>
+                          <li><a href="/about/members">اعضای اصلی و همکاران</a></li>
+                          <li><a href="/about/brand">هویت برند و ارزش‌ها</a></li>
+                          <li><a href="/about/contact">تماس با ما</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </nav>
+
+          <div class="header-actions">
+              <a href="/login" class="btn btn-ghost">ورود</a>
+              <a href="/signup" class="btn btn-primary">رایگان شروع کن</a>
+          </div>
+          <button class="nav-toggle" aria-label="باز کردن منو">
+              <span class="nav-toggle-line"></span>
+              <span class="nav-toggle-line"></span>
+          </button>
+      </div>
+  </header>
+
+  <div class="scroll-progress-bar"></div>
+
+  <div class="mobile-nav" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+      <div class="mobile-nav-panel">
+          <button class="mobile-close" aria-label="بستن منو">
+              <span class="material-icons">close</span>
+          </button>
+          <nav class="mobile-main-nav">
+              <ul>
+                  <li><a href="/courses">دوره‌ها</a></li>
+                  <li><a href="/scenarios">سناریوهای واقعی</a></li>
+                  <li><a href="https://blog.codbanoo.ir/">بلاگ</a></li>
+                  <li><a href="/support">پشتیبانی</a></li>
+                  <li><a href="/about">درباره‌ما</a></li>
+              </ul>
+          </nav>
+
+          <div class="mobile-nav-actions">
+              <a href="/login" class="btn btn-ghost">ورود</a>
+              <a href="/signup" class="btn btn-primary">رایگان شروع کن</a>
+          </div>
+      </div>
+  </div>
+  <!-- ===== END HEADER ===== -->
+
+
+  <main class="about-main">
+
+    <!-- SECTION 1: About + Team Picture -->
+    <section class="about-hero">
+      <div class="container about-hero-grid">
+        <div>
+          <h1 class="about-title">درباره تیم کُدبانو</h1>
+          <p class="about-sub">
+            کُدبانو تیمی است که «سواد کدی» را از حالت تئوری بیرون می‌آورد و به سناریوهای واقعی زندگی روزمره وصل می‌کند؛
+            از مرتب‌سازی فایل‌ها و گزارش‌گیری گرفته تا ساخت ابزارهای کوچک خودکار که زمان و انرژی شما را پس می‌دهند.
+          </p>
+        </div>
+
+        <div class="about-team-side">
+            <div class="about-team-pic">
+              <img src="/pics/team/team.png" alt="تصویر تیم کُدبانو" />
+          
+              <div class="team-overlay-box" style="text-align: right;">
+                <p>برای آشنایی با اعضای اصلی و همکاران کُدبانو، <a href="/about/members">صفحه اعضا</a> را ببینید.</p>
+              </div>              
+            </div>
+        </div>                       
+      </div>
+    </section>
+
+    <!-- BODY -->
+    <section class="about-section">
+      <div class="container">
+
+        <!-- SECTION 2: Story + Problem in one row -->
+        <div class="two-col">
+          <article class="glass-card fade-in-up">
+            <div class="card-inner">
+              <h2 class="h2">داستان شکل‌گیری کُدبانو</h2>
+              <p class="p">
+                کُدبانو از دل تجربه‌ی پروژه‌هایی شکل گرفت که در آن‌ها «ایده» وجود داشت اما مسیر اجرای فنی
+                پیچیده، زمان‌بر یا پر از سوءتفاهم بود. ما آمدیم تا مسیر را ساده کنیم:
+                آموزش‌های کاربردی، سناریوهای واقعی و خروجی‌هایی که همان لحظه قابل استفاده باشند.
+              </p>
+            </div>
+          </article>
+
+          <article class="glass-card">
+            <div class="card-inner fade-in-up">
+              <h2 class="h2">مسئله‌ای که حل می‌کنیم</h2>
+              <p class="p" style="margin-bottom:.55rem;">
+                ما کمک می‌کنیم کارهای تکراری، زمان‌بر و پراشتباه تبدیل شوند به فرآیندهای کوچک اما قابل اتکا.
+              </p>
+              <ul class="list">
+                <li>کم‌کردن فاصله بین «می‌خواهم» و «می‌توانم انجامش بدهم»</li>
+                <li>ساخت ابزارهای ساده برای اتوماسیون کارهای روزمره</li>
+                <li>یادگیری بدون اصطلاحات سنگین؛ با نتیجه‌ی قابل لمس</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- SECTION 3: Mindset -->
+        <article class="glass-card" style="margin-top:1rem;">
+          <div class="card-inner fade-in-up">
+            <h2 class="h2">طرز فکر تیم کُدبانو</h2>
+
+            <div class="mindset">
+              <div class="mind fade-in-up">
+                <div class="mind-title"><span class="material-icons">visibility</span>شفافیت</div>
+                <p>هر راه‌حل باید قابل توضیح، قابل پیگیری و قابل نگهداری باشد—نه فقط «کار کند».</p>
+              </div>
+              <div class="mind fade-in-up">
+                <div class="mind-title"><span class="material-icons">verified</span>کیفیت</div>
+                <p>خروجی باید قابل دفاع باشد: خوانا، تست‌پذیر، و سازگار با نیاز واقعی کاربر.</p>
+              </div>
+              <div class="mind fade-in-up">
+                <div class="mind-title"><span class="material-icons">handshake</span>تعهد</div>
+                <p>ما روی «نتیجه» متعهدیم: تا وقتی مسئله حل نشود، کار برای ما تمام نشده است.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SECTION 4: How we work (Flowchart) -->
+        <article class="glass-card fade-in-up" style="margin-top:1rem;">
+            <div class="card-inner">
+        
+            <h2 class="h2">چطور کار می‌کنیم؟ (فلوچارت فرآیند)</h2>
+            <p class="flow-note">
+                فرآیند ما مرحله‌ای و بازگشتی است؛ یعنی سریع نتیجه می‌بینید و اگر نیاز به اصلاح باشد،
+                با کمترین هزینه به عقب برمی‌گردیم و دقیق‌ترش می‌کنیم.
+            </p>
+        
+            <div class="flow-wrap fade-in-up">
+                <svg class="flow-svg"
+                    viewBox="0 0 1200 520"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    aria-label="فلوچارت فرآیند کار کُدبانو">
+        
+                <defs>
+                    <marker id="arrow" viewBox="0 0 10 10"
+                            refX="8" refY="5"
+                            markerWidth="7" markerHeight="7"
+                            orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f8f7f"/>
+                    </marker>
+        
+                    <!-- استایل پایه فلوچارت: (همه خطوط منقطع یکسان) -->
+                    <style>
+                    .box{
+                        fill: rgba(255,255,255,0.75);
+                        stroke: rgba(0,0,0,0.10);
+                        stroke-width:2;
+                    }
+                    .soft{
+                        fill: rgba(217,243,238,0.55);
+                        stroke: rgba(0,0,0,0.10);
+                        stroke-width:2;
+                    }
+                    .diamond{
+                        fill: rgba(248,215,255,0.55);
+                        stroke: rgba(0,0,0,0.10);
+                        stroke-width:2;
+                    }
+        
+                    /* ✅ همه خطوط: منقطع و یکسان */
+                    .line{
+                        stroke:#2f8f7f;
+                        stroke-width:3;
+                        fill:none;
+                        marker-end:url(#arrow);
+                        stroke-dasharray: 8 6;
+                    }
+                    </style>
+                </defs>
+        
+                <!-- ===== ROW 1 ===== -->
+        
+                <g class="flow-node" data-node="start" tabindex="0">
+                    <rect class="soft" x="980" y="60" rx="18" ry="18" width="190" height="80"/>
+                    <text class="flow-label" x="1075" y="98" text-anchor="middle">شروع</text>
+                    <text class="flow-sub" x="1075" y="122" text-anchor="middle">هدف / نیاز اولیه</text>
+                </g>
+        
+                <g class="flow-node" data-node="discover" tabindex="0">
+                    <rect class="box" x="740" y="60" rx="18" ry="18" width="210" height="80"/>
+                    <text class="flow-label" x="845" y="98" text-anchor="middle">شناخت مسئله</text>
+                    <text class="flow-sub" x="845" y="122" text-anchor="middle">سؤال‌سازی + دامنه</text>
+                </g>
+        
+                <g class="flow-node" data-node="design" tabindex="0">
+                    <rect class="box" x="490" y="60" rx="18" ry="18" width="220" height="80"/>
+                    <text class="flow-label" x="600" y="98" text-anchor="middle">طراحی مسیر</text>
+                    <text class="flow-sub" x="600" y="122" text-anchor="middle">سناریو + معیار موفقیت</text>
+                </g>
+        
+                <g class="flow-node" data-node="build" tabindex="0">
+                    <rect class="box" x="240" y="60" rx="18" ry="18" width="220" height="80"/>
+                    <text class="flow-label" x="350" y="98" text-anchor="middle">پیاده‌سازی</text>
+                    <text class="flow-sub" x="350" y="122" text-anchor="middle">کد / اتوماسیون / محتوا</text>
+                </g>
+        
+                <!-- فلش‌های ردیف اول -->
+                <path class="line flow-edge" data-from="start" data-to="discover" d="M 980 100 L 950 100"/>
+                <path class="line flow-edge" data-from="discover" data-to="design" d="M 740 100 L 710 100"/>
+                <path class="line flow-edge" data-from="design" data-to="build" d="M 490 100 L 460 100"/>
+        
+                <!-- ===== ROW 2 ===== -->
+        
+                <g class="flow-node" data-node="test" tabindex="0">
+                    <rect class="box" x="240" y="200" rx="18" ry="18" width="220" height="80"/>
+                    <text class="flow-label" x="350" y="238" text-anchor="middle">تست و بازخورد</text>
+                    <text class="flow-sub" x="350" y="262" text-anchor="middle">خطاها + بهینه‌سازی</text>
+                </g>
+        
+                <g class="flow-node" data-node="decision" tabindex="0">
+                    <polygon class="diamond" points="600,190 700,240 600,290 500,240"/>
+                    <text class="flow-label" x="600" y="238" text-anchor="middle">نیاز به اصلاح؟</text>
+                    <text class="flow-sub" x="600" y="262" text-anchor="middle">بله / خیر</text>
+                </g>
+        
+                <g class="flow-node" data-node="deliver" tabindex="0">
+                    <rect class="box" x="740" y="200" rx="18" ry="18" width="220" height="80"/>
+                    <text class="flow-label" x="850" y="238" text-anchor="middle">تحویل + مستندسازی</text>
+                    <text class="flow-sub" x="850" y="262" text-anchor="middle">راهنمای استفاده</text>
+                </g>
+        
+                <g class="flow-node" data-node="support" tabindex="0">
+                    <rect class="soft" x="980" y="200" rx="18" ry="18" width="190" height="80"/>
+                    <text class="flow-label" x="1075" y="238" text-anchor="middle">پشتیبانی</text>
+                    <text class="flow-sub" x="1075" y="262" text-anchor="middle">بهبود مستمر</text>
+                </g>
+        
+                <!-- فلش‌های ردیف دوم -->
+                <path class="line flow-edge" data-from="build" data-to="test" d="M 350 140 L 350 200"/>
+                <path class="line flow-edge" data-from="test" data-to="decision" d="M 460 240 L 500 240"/>
+                <path class="line flow-edge" data-from="decision" data-to="deliver" d="M 700 240 L 740 240"/>
+                <path class="line flow-edge" data-from="deliver" data-to="support" d="M 960 240 L 980 240"/>
+        
+                <!-- مسیر بازگشت اصلاح -->
+                <path class="line flow-edge" data-from="decision" data-to="test"
+                d="M 600 288
+                    V 350
+                    H 350
+                    V 280" />
+
+                <!-- حلقه پشتیبانی → تست -->
+                <!-- حلقه پشتیبانی → تست (نسخه خط‌کشی شده) -->
+                <path class="line flow-edge" data-from="support" data-to="test"
+                d="M 1075 280
+                V 420
+                H 160
+                V 240
+                H 240" />
+
+                <text class="flow-sub" x="640" y="455" text-anchor="middle">
+                    بازخوردهای جدید → بهبود / تکرار
+                </text>
+        
+                </svg>
+            </div>
+        
+            </div>
+        </article>
+        
+  
+
+        <!-- SECTION 5: Transparency + Vision (NO licenses) -->
+        <div class="end-grid fade-in-up">
+          <article>
+            <div class="card-inner">
+              <h2 class="h2">شفافیت</h2>
+              <p class="p" style="margin-bottom:.55rem;">
+                شفافیت برای ما یعنی «قابل سنجش بودن» و «قابل پیگیری بودن»:
+              </p>
+              <ul class="list">
+                <li>هدف‌ها و خروجی‌ها از ابتدا مشخص می‌شوند.</li>
+                <li>هر مرحله نتیجه‌ی قابل مشاهده دارد (نه وعده).</li>
+                <li>تعهد به محرمانگی داده‌ها و احترام به کاربر.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="fade-in-up">
+            <div class="card-inner">
+              <h2 class="h2">چشم‌انداز کُدبانو</h2>
+              <p class="p">
+                ما می‌خواهیم «کُد» را به ابزار روزمره تبدیل کنیم، نه چیزی ترسناک یا دور از دسترس.
+                چشم‌انداز کُدبانو ساخت مسیرهایی ساده و کاربردی است که هر کاربر بتواند
+                با آن‌ها زندگی دیجیتال خود را مرتب‌تر، سریع‌تر و هوشمندتر کند.
+              </p>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===== START FOOTER (کپی دقیق از members.html) ===== -->
+  <footer class="site-footer">
+      <div class="container footer-inner">
+          <div class="footer-brand">
+              <a href="https://codbanoo.ir/" class="brand">
+                  <img src="/pics/icons/codbanooICON.svg" alt="لوگوی کُدبانو" class="brand-logo" />
+                  <span class="brand-text">
+                      <span class="brand-name">کُدبانو</span>
+                      <span class="brand-tagline">کدهای کوچک، تغییرهای بزرگ</span>
+                  </span>
+              </a>
+              <p class="footer-slogan">
+                  با کُدبانو، هر کاربر عادی می‌تواند کمی «سواد کدی» به زندگی روزمره‌اش اضافه کند
+                  و کارهای تکراری را به کامپیوتر بسپارد.
+              </p>
+          </div>
+
+          <div class="footer-links">
+              <div>
+                  <h4>راهنما</h4>
+                  <ul>
+                      <li><a href="/about/team">کُدبانو چطور کار می‌کند؟</a></li>
+                      <li><a href="/support/roadmap">مسیر پیشنهادی یادگیری</a></li>
+                      <li><a href="/support/faq">سؤالات متداول</a></li>
+                  </ul>
+              </div>
+              <div>
+                  <h4>ارتباط با کُدبانو</h4>
+                  <ul class="footer-contact-list">
+                      <li>
+                        <span class="material-icons">call</span>
+                        <a>09019185899</a>
+                      </li>
+                      <li>
+                        <span class="material-icons">email</span>
+                        <a>info@codbanoo.ir</a>
+                      </li>
+                  </ul>
+
+                  <div class="footer-social">
+                      <a class="social-link" href="https://instagram.com/codbanoo_official" target="_blank" rel="noreferrer">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+                              alt="اینستاگرام کُدبانو" draggable="false">
+                      </a>
+                      <a class="social-link" href="https://t.me/codbanoo_official" target="_blank" rel="noreferrer">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                              alt="تلگرام کُدبانو" draggable="false">
+                      </a>
+                  </div>
+
+              </div>
+
+              <div class="trust-badges"
+                  style="display:flex; justify-content:center; align-items:center; width:100%; margin:0 auto;">
+
+                <a href="/about"
+                  style="display:inline-flex; justify-content:center; align-items:center; text-decoration:none; background:transparent; padding:0; margin:0 auto;">
+
+                  <img src="/pics/icons/license.png" alt="مجوزها"
+                      style="
+                        display:block;
+                        height:auto;
+                        width:min(100px, 60vw);
+                        max-width:100%;
+                        object-fit:contain;
+                        background:transparent;
+                      " />
+                </a>
+              </div>
+              <style>
+                @media (min-width: 1024px){
+                  .trust-badges img{ width: 110px !important; }
+                }
+              </style>
+                  
+
+          </div>
+      </div>
+
+      <div class="footer-bottom">
+          <div class="container">
+              <p class="footer-copy allow-copy">
+                  © تمامی حقوق این وب‌سایت برای کُدبانو محفوظ است.
+              </p>
+              <div class="footer-bottom-links">
+                  <a href="/terms">قوانین و شرایط استفاده</a>
+                  <a href="/privacy">حریم خصوصی</a>
+                  <a href="#" class="back-to-top">برگشت به بالا ↑</a>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <!-- ===== END FOOTER ===== -->
+
+  <script>
+    // back-to-top مثل بقیه صفحات
+    const btt = document.querySelector('.back-to-top');
+    if (btt){
+      btt.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+
+</body>
+</html>
