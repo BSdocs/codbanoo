@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /signup
+Disallow: /404
+Disallow: /*?*
+Disallow: /api/
+Disallow: /admin/
+Disallow: /assets/private/
+Disallow: /tmp/
+Allow: /styles.css
+Allow: /script.js
+Allow: /codbanooICON.svg
+Sitemap: https://codbanoo.ir/sitemap.xml
