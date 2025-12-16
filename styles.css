@@ -1251,7 +1251,7 @@ button {
 .trust-badge-img{
   height: 100px;
   width: auto;
-  max-width: 180px;
+  max-width: 80px;
   border-radius: 12px;
   background: rgba(255,255,255,0.92);
   padding: 6px;
@@ -1534,3 +1534,4 @@ body {
     .trust-badge-img{ height: 100px; }
   }
   
+
