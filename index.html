@@ -1,773 +1,14 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8" />
-    <title>پلتفرم برنامه‌نویسی آسان کُدبانو</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description"
-          content="کُدبانو همراه تو برای یادگیری کدنویسی ساده و کاربردی در زندگی روزمره است؛ از مرتب‌سازی فایل‌ها تا ساخت گزارش‌های کوچک و خودکارسازی کارهای تکراری." />
-
-    <!-- Favicon / Brand Icon -->
-    <link rel="icon" type="image/svg+xml" href="codbanooICON.svg" />
-
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css" />
-
-    <!-- آدرس sitemap.xml -->
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-
-    <!-- Scripts -->
-    <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت در حال بروزرسانی</title>
 </head>
-<body>
-<header class="site-header">
-    <div class="container header-inner">
-        <a href="" class="logo" draggable="false">
-            <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="logo-icon" draggable="false" />
-            <span class="logo-text">کُدبانو</span>
-        </a>
-        <nav class="main-nav">
-            <ul>
-                <!-- دوره‌ها -->
-                <li class="has-submenu">
-                    <a href="/courses">
-                        دوره‌ها
-                        <span class="submenu-arrow">▾</span>
-                    </a>
-        
-                    <div class="submenu submenu-wide">
-                        <!-- ستون ۱: بر اساس سیستم‌عامل -->
-                        <div class="submenu-section">
-                            <h4>بر اساس سیستم‌عامل</h4>
-                            <ul>
-                                <li><a href="/courses/windows-automation">اسکریپت‌های کاربردی ویندوز</a></li>
-                                <li><a href="/courses/mac-automation">خودکارسازی روی مک (macOS)</a></li>
-                                <li><a href="/courses/linux-automation">ترفندهای ساده در لینوکس</a></li>
-                            </ul>
-                        </div>
-        
-                        <!-- ستون ۲: بر اساس زبان و ابزار -->
-                        <div class="submenu-section">
-                            <h4>زبان‌ها و ابزارها</h4>
-                            <ul>
-                                <li><a href="/courses/python-basics">پایتون برای کارهای روزمره</a></li>
-                                <li><a href="/courses/sql-reports">SQL برای گزارش‌گیری ساده</a></li>
-                                <li><a href="/courses/web-automation">ابزارهای وب (HTML / Automation)</a></li>
-                            </ul>
-                        </div>
-        
-                        <!-- ستون ۳: مسیرهای پیشنهادی -->
-                        <div class="submenu-section">
-                            <h4>مسیرهای پیشنهادی</h4>
-                            <ul>
-                                <li><a href="/courses/get-started">شروع از صفر برای افراد پرمشغله</a></li>
-                                <li><a href="/courses/office-routines">خودکارسازی کارهای اداری</a></li>
-                                <li><a href="/courses/home-digital-life">دیجیتالی‌کردن کارهای خانه</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-        
-                <!-- سناریوهای واقعی -->
-                <li class="has-submenu">
-                    <a href="/scenarios">
-                        سناریوهای واقعی
-                        <span class="submenu-arrow">▾</span>
-                    </a>
-        
-                    <div class="submenu">
-                        <div class="submenu-section">
-                            <h4>زندگی روزمره</h4>
-                            <ul>
-                                <li><a href="/scenarios/home-and-life">مرتب‌سازی پوشه‌های شخصی و عکس‌ها</a></li>
-                                <li><a href="/scenarios/family-planning">چک‌لیست‌ها و برنامه‌ریزی خانوادگی</a></li>
-                            </ul>
-                        </div>
-        
-                        <div class="submenu-section">
-                            <h4>کار و کسب‌وکار</h4>
-                            <ul>
-                                <li><a href="/scenarios/work-and-business">گزارش‌های خودکار کاری</a></li>
-                                <li><a href="/scenarios/freelance">مدیریت فایل‌های فریلنسری</a></li>
-                            </ul>
-                        </div>
-        
-                        <div class="submenu-section">
-                            <h4>درس و دانشگاه</h4>
-                            <ul>
-                                <li><a href="/scenarios/study">مرتب‌سازی تکالیف و اسلایدها</a></li>
-                                <li><a href="/scenarios/research-notes">سازمان‌دهی جزوه‌ها و نوت‌ها</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-        
-                <!-- آیتم‌های ساده -->
-                <li><a href="/blog">بلاگ</a></li>
-                <li><a href="/support">پشتیبانی</a></li>
-        
-                <!-- درباره‌ما (به‌جای تعرفه‌ها) -->
-                <li class="has-submenu">
-                    <a href="/about">
-                        درباره‌ما
-                        <span class="submenu-arrow">▾</span>
-                    </a>
-        
-                    <ul class="submenu">
-                        <li><a href="/about/team">درباره تیم کُدبانو</a></li>
-                        <li><a href="/about/members">اعضای اصلی و همکاران</a></li>
-                        <li><a href="/about/values">هویت برند و ارزش‌ها</a></li>
-                        <li><a href="/about/contact">تماس با ما</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        
-        
-        <div class="header-actions">
-            <a href="/login" class="btn btn-ghost">ورود</a>
-            <a href="/signup" class="btn btn-primary">رایگان شروع کن</a>
-        </div>
-        <button class="nav-toggle" aria-label="باز کردن منو">
-            <span class="nav-toggle-line"></span>
-            <span class="nav-toggle-line"></span>
-        </button>
+<body style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4;">
+    <div style="text-align: center;">
+        <h1 style="color: #e74c3c;">سایت در حال بروزرسانی است.</h1>
+        <p style="color: #777;">لطفا بعدا مراجعه کنید.</p>
     </div>
-</header>
-<div class="scroll-progress-bar"></div>
-<!-- موبایل منو -->
-<div class="mobile-nav" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-    <div class="mobile-nav-panel">
-        <button class="mobile-close" aria-label="بستن منو">
-            <span class="material-icons">close</span>
-        </button>
-        <nav class="mobile-main-nav">
-            <ul>
-                <li><a href="/courses">دوره‌ها</a></li>
-                <li><a href="/scenarios">سناریوهای واقعی</a></li>
-                <li><a href="/blog">بلاگ</a></li>
-                <li><a href="/support">پشتیبانی</a></li>
-                <li><a href="/pricing">درباره‌ما</a></li>
-            </ul>
-        </nav>
-        
-        
-        <div class="mobile-nav-actions">
-            <a href="/login" class="btn btn-ghost">ورود</a>
-            <a href="/signup" class="btn btn-primary">رایگان شروع کن</a>
-        </div>
-    </div>
-</div>
-    
-<main>
-    <!-- HERO / TERMINAL -->
-    <section class="hero-section">
-        <div class="container hero-grid">
-            <!-- سمت چپ: متن و دکمه‌ها -->
-            <div class="hero-content">
-                <h1>کدنویسی، ساده‌تر از همیشه</h1>
-                <p>
-                    با چند کلیک، کارهای تکراری‌ات را خودکار کن. در هر درس، یک سناریوی واقعی را باز می‌کنیم؛
-                    از مرتب‌سازی پوشه‌های شلوغ تا ساختن چک‌لیست کارهای هفتگی.
-                    تو فقط قدم‌ها را دنبال می‌کنی و نتیجه را روی سیستم خودت می‌بینی.
-                </p>
-    
-                <ul class="hero-features">
-                    <li>ویدئوهای کوتاه و قابل‌فهم</li>
-                    <li>کُدهای آماده قابل کپی و ویرایش</li>
-                    <li>پیشنهاد خودکار برای بهبود کارهایت</li>
-                </ul>
-    
-                <div class="hero-actions">
-                    <a href="#sample-lesson" class="btn btn-ghost">تماشای دروس رایگان</a>
-                    <a href="/signup" class="btn btn-primary">من هم می‌خواهم امتحان کنم</a>
-                </div>
-            </div>
-            <!-- سمت راست: ترمینال -->
-            <div class="hero-visual">
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <span class="tb tb-close"></span>
-                            <span class="tb tb-min"></span>
-                            <span class="tb tb-max"></span>
-                        </div>
-                        <div class="terminal-title">$ codbanoo㉿home:~/scripts</div>
-                    </div>                    
-                    <pre class="terminal-body" dir="ltr"><code id="terminalText"></code></pre>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
-    <!-- QUICK STEPS -->
-    <section class="quick-steps">
-        <div class="container fade-in-up">
-            <div class="quick-grid">
-                <article class="quick-step-card">
-                    <span class="quick-icon material-icons">check_circle</span>
-                    <h3>نقطه(;) به نقطه(;) همراه تو</h3>
-                    <p>
-                        هر درس مثل یک گفت‌وگوی دوستانه است؛ از توضیح مسئله تا اجرای کد و دیدن نتیجه، همه‌چیز را با هم جلو می‌بریم.
-                    </p>
-                </article>
-
-                <article class="quick-step-card">
-                    <span class="quick-icon material-icons">auto_awesome</span>
-                    <h3>اسکریپت‌های آماده و قابل ویرایش</h3>
-                    <p>
-                        کدها را عیناً کپی می‌کنی، در حد نیازت عوض می‌کنی و همان لحظه روی سیستم خودت خروجی می‌بینی.
-                    </p>
-                </article>
-
-                <article class="quick-step-card">
-                    <span class="quick-icon material-icons">schedule</span>
-                    <h3>صرفه‌جویی واقعی در زمان</h3>
-                    <p>
-                        از مرتب‌سازی پوشه‌های شلوغ تا تهیه گزارش‌های کوچک، هر سناریو طوری طراحی شده که چند ساعت در هفته برایت وقت آزاد کند.
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURE 1: RESPONSIVE / DEVICES -->
-    <section class="feature-section">
-        <div class="container feature-inner fade-in-up">
-            <div class="feature-image">
-                <img data-image-key="feature_responsive"
-                     alt="نمایش اسکریپت‌ها و داشبورد خودکارسازی در موبایل و دسکتاپ"
-                     class="feature-img" />
-            </div>
-            <div class="feature-text section-text">
-                <h2>با تو، توی هر دستگاهی!</h2>
-                <p>
-                    اسکریپت‌های کُدبانو روی لپ‌تاپ، کامپیوتر محل کار یا حتی موبایلِ همراهت اجرا میشن!
-                    هر جا که داده و پوشه‌ای هست، می‌تونی بهش چاشنی نظم اضافه کنی.
-                </p>
-                <p>
-                    برای هر سناریو، ساختار پوشه‌ها و فایل‌ها را قدم‌به‌قدم توضیح می‌دهیم تا بفهمی کد دقیقاً با چه چیزی طرف است.
-                </p>
-                <a href="/scenarios/file-organizing"
-                   class="btn btn-link-like">مشاهده سناریوهای مرتب‌سازی فایل‌ها</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURE 2: FLIPPED SIDE (CODING SIMPLER THAN EVER) -->
-    <section class="feature-section">
-        <div class="container feature-inner fade-in-up">
-            <div class="feature-text section-text">
-                <h2>کدنویسی، ساده‌تر از همیشه</h2>
-                <p>
-                    با چند کلیک، کارهای تکراری‌ات را خودکار کن. در هر درس، یک سناریوی واقعی را باز می‌کنیم؛
-                    از مرتب‌سازی پوشه‌های شلوغ تا ساختن چک‌لیست کارهای هفتگی. تو فقط قدم‌ها را دنبال می‌کنی
-                    و نتیجه را روی سیستم خودت می‌بینی.
-                </p>
-                <ul class="feature-list">
-                    <li>ویدئوهای کوتاه، قابل‌فهم و بدون اصطلاحات سنگین</li>
-                    <li>کُدهای آماده برای کپی و ویرایش بر اساس نیاز خودت</li>
-                    <li>پیشنهادهای خودکار برای ایده‌های بعدی و بهبود کارهایت</li>
-                </ul>
-                <a href="/courses/get-started"
-                   class="btn btn-primary">
-                    همین حالا امتحان کنید
-                </a>
-            </div>
-            <div class="feature-image">
-                <img data-image-key="feature_easy"
-                     alt="آموزش کدنویسی ساده و قدم‌به‌قدم"
-                     class="feature-img" />
-            </div>
-        </div>
-    </section>
-
-    <!-- GLASS STRIP (SKILL / VALUE PROPOSITION) -->
-    <section class="skill-section" style="background:#d9f3ee; padding:60px 20px; border-radius:20px; margin:80px auto; max-width:1300px;">
-    
-        <div class="skill-wrapper" style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
-    
-            <!-- 📌 نصف بخش: ویدئو -->
-            <div class="skill-video" style="flex:1; min-width:320px;">
-                <div class="h_iframe-aparat_embed_frame" style="position:relative; width:100%; overflow:hidden;">
-                    <span style="display:block; padding-top:57%;"></span>
-                    <iframe 
-                        src="https://www.aparat.com/video/video/embed/videohash/soz53ay/vt/frame" 
-                        allowFullScreen="true"
-                        webkitallowfullscreen="true" 
-                        mozallowfullscreen="true"
-                        style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:16px;"
-                    ></iframe>
-                </div>
-            </div>
-    
-            <!-- 📌 نصف بخش: متن -->
-            <div class="skill-text" style="flex:1; min-width:320px; color:#0a3f3a;">
-    
-                <h2 style="font-size:32px; font-weight:800; margin-bottom:20px;">
-                    شروع مسیر برنامه‌نویسی حرفه‌ای از همین‌جاست
-                </h2>
-    
-                <p style="line-height:1.9; font-size:18px;">
-                    تو این ویدئوی چند دقیقه‌ای میفهمی که چطور می‌تونی بدون فشار و سردرگمی، 
-                    یادگیری برنامه‌نویسی را شروع کنی و قدم‌به‌قدم تا ساخت اولین پروژه‌های واقعی پیش بری.
-                </p>
-    
-                <p style="line-height:1.9; font-size:18px; margin-top:20px;">
-                    اگر تازه‌کاری یا بارها شروع کردی و رها شدی، این مسیر دقیقاً برای تو طراحی شده:
-                    شفاف، عملی، قابل پیش‌بینی و بدون اتلاف وقت!
-                </p>
-    
-            </div>
-    
-        </div>
-    
-    </section>
-    
-    <!-- 📌 ریسپانسیو موبایل -->
-    <style>
-    @media (max-width: 768px) {    
-        /* فاصله کادر سبز از دیواره موبایل */
-        .skill-section {
-            margin: 1.5rem 0.9rem !important;   /* فاصله واقعی از لبه موبایل */
-            padding: 1.6rem 1.2rem !important;  /* padding متعادل */
-            border-radius: 18px;
-        }
-        /* چیدمان عمودی */
-        .skill-wrapper {
-            flex-direction: column-reverse !important;
-            gap: 1.2rem !important; /* فاصله منطقی متن و ویدئو */
-        }
-        /* ویدئو: بدون فاصله اضافی */
-        .skill-video {
-            width: 100%;
-            margin: 0;
-        }        
-        .h_iframe-aparat_embed_frame {
-            margin: 0;                /* ❗ فاصله اضافی حذف */
-            border-radius: 14px;
-            overflow: hidden;
-        }
-        iframe {
-            border-radius: 14px;
-        }
-            /* متن‌ها */
-        .skill-text h2 {
-            font-size: 22px !important;
-            margin-bottom: 0.7rem !important;
-            line-height: 1.6;
-        }
-        .skill-text p {
-            font-size: 15.5px !important;
-            line-height: 1.85 !important;
-            margin-top: 0.7rem !important;
-        }
-    }
-    </style>
-        
-
-    
-    <!-- FEATURE 3 -->
-    <section class="feature-section">
-        <div class="container feature-inner fade-in-up">
-            <div class="feature-image">
-                <img data-image-key="feature_planning"
-                     alt="برنامه‌ریزی کارها با اسکریپت‌های خودکار"
-                     class="feature-img" />
-            </div>
-            <div class="feature-text section-text">
-                <h2>برنامه‌ریزی خانه و کار، در یک نگاه</h2>
-                <p>
-                    لیست کارهای هفتگی، خریدهای ماهانه، پیگیری پروژه‌های کوچک و حتی بودجه‌بندی خانگی رو
-                    میشه با چند اسکریپت ساده و یک فایل اکسل سبک مدیریت کرد.
-                </p>
-                <p>
-                    در هر سناریو یاد می‌گیری چطور داده‌ها رو از پوشه‌ها و فایل‌ها بخونی،
-                    مرتب‌شون کنی و خروجی دلخواهت رو تحویل بگیری؛ بدون نیاز به سیستم‌های پیچیده.
-                </p>
-                <a href="/scenarios/home-and-work"
-                   class="btn btn-link-like">دیدن سناریوهای برنامه‌ریزی خانه و کار</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials">
-        <div class="container fade-in-up">
-            <div class="section-heading"
-                style="
-                position: relative;
-                z-index: 5;
-                text-align: center;
-                margin-bottom: 2rem;
-                transform: translateZ(0);
-                backface-visibility: hidden;
-                will-change: transform;
-                contain: layout paint;
-                ">
-            <h2 style="
-                    margin: 0 0 0.6rem;
-                    line-height: 1.5;
-                    transform: translateZ(0);
-                    backface-visibility: hidden;
-                ">
-                تجربه‌ی کُدبانویی‌ها
-            </h2>
-
-            <p class="section-text"
-                style="
-                margin: 0 auto;
-                max-width: 600px;
-                line-height: 1.9;
-                transform: translateZ(0);
-                backface-visibility: hidden;
-                ">
-                کسانی که با دنیای فنی میانه‌ای نداشتند، حالا با چند اسکریپت ساده بخش‌هایی از زندگی و کارشان را خودکار کردند.
-            </p>
-            </div>
-
-
-            <div class="testimonials-slider">
-                <article class="testimonial-card is-active">
-                    <div class="testimonial-avatar">
-                        <img data-image-key="testimonial_1"
-                             alt="کاربر کُدبانو - هستی رضایی" />
-                    </div>
-                    <h3>هستی رضایی</h3>
-                    <p class="testimonial-role">کارشناس منابع انسانی</p>
-                    <p class="testimonial-text">
-                        با اسکریپت‌های کُدبانو، گزارش‌های ماهانه‌ی حضور و غیاب را به‌طور خودکار آماده می‌کنم.
-                        هر ماه چند ساعت زمانم آزاد شده و می‌توانم روی گفت‌وگو با همکاران تمرکز کنم.
-                    </p>
-                    <div class="testimonial-stars">
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star_half</span>
-                    </div>
-                </article>
-
-                <article class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img data-image-key="testimonial_2"
-                             alt="کاربر کُدبانو - سامان فائق" />
-                    </div>
-                    <h3>سامان فائق</h3>
-                    <p class="testimonial-role">مشاور توسعه کسب‌وکار</p>
-                    <p class="testimonial-text">
-                        قبلاً برای هر گزارش فروش مجبور بودم از چند فایل مختلف خروجی بگیرم.
-                        حالا با یک اسکریپت کوتاه، فایل‌ها خودشان کنار هم قرار می‌گیرند و داشبورد آماده می‌شود.
-                    </p>
-                    <div class="testimonial-stars">
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                    </div>
-                </article>
-                <article class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img data-image-key="testimonial_3"
-                             alt="کاربر کُدبانو - مریم کرمی" />
-                    </div>
-                    <h3>مریم کرمی</h3>
-                    <p class="testimonial-role">مدیر دفتر یک شرکت کوچک</p>
-                    <p class="testimonial-text">
-                        همیشه از شلوغی پوشه‌ها می‌ترسیدم. با دوره‌های کُدبانو یاد گرفتم چطور عکس‌ها،
-                        قراردادها و فایل‌های مالی را طبق تاریخ و پروژه دسته‌بندی کنم؛
-                        الان همه‌چیز در چند ثانیه پیدا می‌شود.
-                    </p>
-                    <div class="testimonial-stars">
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                    </div>
-                </article>
-
-                <article class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img data-image-key="testimonial_4"
-                             alt="کاربر کُدبانو - امیرحسین دانشور" />
-                    </div>
-                    <h3>امیرحسین دانشور</h3>
-                    <p class="testimonial-role">فریلنسر تولید محتوا</p>
-                    <p class="testimonial-text">
-                        هر هفته برای چند مشتری محتوا آماده می‌کنم. با اسکریپت‌های مدیریت فایل کُدبانو،
-                        نسخه‌های نهایی، عکس‌ها و فاکتورها را خودکار مرتب می‌کنم و دیگر چیزی گم نمی‌شود.
-                    </p>
-                    <div class="testimonial-stars">
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star_half</span>
-                    </div>
-                </article>
-
-                <article class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img data-image-key="testimonial_5"
-                             alt="کاربر کُدبانو - سارا رسولی تبار" />
-                    </div>
-                    <h3>سارا رسولی تبار</h3>
-                    <p class="testimonial-role">بانوی خانه‌دار</p>
-                    <p class="testimonial-text">
-                        خوبی کُدبانو اینه که میشه بدون داشتن مهارت خاصی توی کامپیوتر، یا گذراندن دوره‌های پیچیده و طولانی به جواب خواسته‌ها رسید.
-                    </p>
-                    <div class="testimonial-stars">
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star_half</span>
-                    </div>
-                </article>
-
-                <article class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img data-image-key="testimonial_6"
-                             alt="کاربر کُدبانو - نگین سادات موسوی" />
-                    </div>
-                    <h3>نگین سادات موسوی</h3>
-                    <p class="testimonial-role">دانشجوی مهندسی صنایع</p>
-                    <p class="testimonial-text">
-                        بین درس، کار پاره‌وقت و زندگی روزمره، وقت زیادی ندارم.
-                        چند سناریوی ساده‌ی کُدبانو باعث شد مرتب‌سازی تکالیف، اسلایدها و پروژه‌های دانشگاهی را
-                        بسپارم به یک پوشه و چند خط کد.
-                    </p>
-                    <div class="testimonial-stars">
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                        <span class="material-icons">star</span>
-                    </div>
-                </article>
-            </div>
-            <div class="testimonial-nav">
-                <button class="testimonial-prev" aria-label="نظر قبلی">
-                    <span class="material-icons">chevron_right</span>
-                </button>
-                <button class="testimonial-next" aria-label="نظر بعدی">
-                    <span class="material-icons">chevron_left</span>
-                </button>
-            </div>            
-
-            <div class="testimonial-dots">
-                <button class="dot is-active" data-index="0" aria-label="نظر ۱"></button>
-                <button class="dot" data-index="1" aria-label="نظر ۲"></button>
-                <button class="dot" data-index="2" aria-label="نظر ۳"></button>
-                <button class="dot" data-index="3" aria-label="نظر ۴"></button>
-                <button class="dot" data-index="4" aria-label="نظر ۵"></button>
-                <button class="dot" data-index="5" aria-label="نظر ۶"></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ (ALL VISIBLE) -->
-    <section class="faq">
-        <div class="container fade-in-up">
-            <h2 class="faq-title">پرسش و پاسخ کُدبانو</h2>
-            <div class="faq-grid section-text">
-                <article class="faq-item">
-                    <h3>اگر هیچ تجربه برنامه‌نویسی نداشته باشم، می‌توانم شروع کنم؟</h3>
-                    <p>
-                        بله. دوره‌های کُدبانو برای کاربرانی طراحی شده که فقط با کامپیوتر و فایل‌ها آشنا هستند.
-                        از توضیح مفاهیم پایه شروع می‌کنیم و قدم‌به‌قدم تا اجرای اولین اسکریپت همراهت هستیم.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3>آیا فقط بانوان می‌توانند از کُدبانو استفاده کنند؟</h3>
-                    <p>
-                        تمرکز برند کُدبانو روی فضایی لطیف و همراهانه است و بسیاری از کاربران ما بانوان هستند؛
-                        اما محتوای آموزشی برای هر فردی که می‌خواهد وقتش را بهتر مدیریت کند، کاملاً کاربردی است.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3>به چه ابزارهایی برای اجرای اسکریپت‌ها نیاز دارم؟</h3>
-                    <p>
-                        معمولاً یک کامپیوتر ویندوز، لینوکس یا مک و نصب پایتون کافی است.
-                        در هر سناریو توضیح می‌دهیم چه نرم‌افزارهایی لازم است و لینک راهنمای کامل نصب را هم می‌دهیم.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3>اسکریپت‌ها روی فایل‌های شخصی من امن هستند؟</h3>
-                    <p>
-                        کُدها روی سیستم خودت اجرا می‌شوند و داده‌ها جایی ارسال نمی‌شوند.
-                        در هر درس یاد می‌گیری قبل از اجرا از فایل‌ها نسخه‌ی پشتیبان بگیری و با خیال راحت آزمایش کنی.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3>هر سناریو چقدر زمان می‌برد؟</h3>
-                    <p>
-                        بیشتر سناریوها در ۲۰ تا ۴۰ دقیقه قابل دیدن و پیاده‌سازی هستند
-                        و معمولاً بعد از یک عصر یا یک آخر هفته می‌توانی نتیجه‌ی قابل لمس را روی سیستم خودت ببینی.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3>اگر وسط کار به مشکل خوردم چه‌کار کنم؟</h3>
-                    <p>
-                        از طریق ایمیل، تیکت و پیام‌رسان‌ها می‌توانی سؤال بپرسی!
-                        تیم پشتیبانی و جامعه‌ی کاربران کُدبانو کنارت هستند تا راه‌حل ساده و مطمئن پیدا کنی.
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- SUPPORT / CONTACT -->
-    <section class="support-section">
-        <div class="container fade-in-up">
-            <div class="support-header">
-                <h2>ما در هر قدم کنار شما هستیم</h2>
-                <p class="section-text">
-                    هر زمان که در مسیر خودکارسازی به راهنمایی نیاز داشتی،
-                    می‌تونی روی تیم و محتوای کُدبانو حساب کنی؛ از ویدئوهای آموزشی تا پشتیبانی آنلاین.
-                </p>
-            </div>
-
-            <div class="support-grid">
-                <article class="support-item">
-                    <span class="support-icon material-icons">menu_book</span>
-                    <h3>آکادمی کُدبانو</h3>
-                    <p class="support-link"><a href="/docs">codbanoo.ir/docs</a></p>
-                    <p class="support-meta">۲۴ ساعته در دسترس</p>
-                </article>
-
-                <article class="support-item">
-                    <span class="support-icon material-icons">call</span>
-                    <h3>تماس با ما</h3>
-                    <p class="support-meta">
-                        <a class="allow-copy contact-link" href="tel:09019185899">09019185899</a><br />
-                        ۱۰ صبح تا ۱۶ عصر
-                      </p>                      
-                </article>
-
-                <article class="support-item">
-                    <span class="support-icon material-icons">email</span>
-                    <h3>تیکت و ایمیل</h3>
-                    <p class="support-link"><a href="mailto:support@codbanoo.ir">support@codbanoo.ir</a></p>
-                    <p class="support-meta">پاسخ‌گویی در کوتاه‌ترین زمان</p>
-                </article>
-
-                <article class="support-item support-highlight">
-                    <span class="support-icon material-icons">chat</span>
-                    <h3>گفت‌وگوی آنلاین</h3>
-                    <p class="support-meta">روزهای کاری<br />۱۰ صبح تا ۱۶ عصر</p>
-                    <a href="/support/live-chat"
-                       class="btn btn-secondary">شروع گفت‌وگو</a>
-                </article>
-            </div>
-        </div>
-    </section>
-</main>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="container footer-inner">
-        <div class="footer-brand">
-            <a href="https://codbanoo.ir" class="brand">
-                <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="brand-logo" />
-                <span class="brand-text">
-                    <span class="brand-name">کُدبانو</span>
-                    <span class="brand-tagline">کدهای کوچک، تغییرهای بزرگ</span>
-                </span>
-            </a>
-            <p class="footer-slogan">
-                با کُدبانو، هر کاربر عادی می‌تواند کمی «سواد کدی» به زندگی روزمره‌اش اضافه کند
-                و کارهای تکراری را به کامپیوتر بسپارد.
-            </p>
-        </div>
-
-        <div class="footer-links">
-            <div>
-                <h4>راهنما</h4>
-                <ul>
-                    <li><a href="/team">کُدبانو چطور کار می‌کند؟</a></li>
-                    <li><a href="/roadmap">مسیر پیشنهادی یادگیری</a></li>
-                    <li><a href="/faq">سؤالات متداول</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>ارتباط با کُدبانو</h4>
-                <ul class="footer-contact-list">
-                    <li>
-                      <span class="material-icons">call</span>
-                      <a>09019185899</a>
-                    </li>
-                    <li>
-                      <span class="material-icons">email</span>
-                      <a>info@codbanoo.ir</a>
-                    </li>
-                </ul>                  
-
-                <div class="footer-social">
-                    <!-- اینستاگرام -->
-                    <a class="social-link" href="https://instagram.com/codbanoo_official" target="_blank" rel="noreferrer">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
-                            alt="اینستاگرام کُدبانو" draggable="false">
-                    </a>
-                    <!-- تلگرام -->
-                    <a class="social-link" href="https://t.me/codbanoo_official" target="_blank" rel="noreferrer">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
-                            alt="تلگرام کُدبانو" draggable="false">
-                    </a>
-                </div>
-
-            </div>
-            <div class="trust-badges"
-                  style="display:flex; justify-content:center; align-items:center; width:100%; margin:0 auto;">
-
-                <a href="/about"
-                  style="display:inline-flex; justify-content:center; align-items:center; text-decoration:none; background:transparent; padding:0; margin:0 auto;">
-
-                  <img src="license.png" alt="مجوزها"
-                      style="
-                        display:block;
-                        height:auto;
-                        width:min(100px, 60vw);
-                        max-width:100%;
-                        object-fit:contain;
-                        background:transparent;
-                      " />
-                </a>
-              </div>
-              <style>
-                @media (min-width: 1024px){
-                  .trust-badges img{ width: 110px !important; }
-                }
-              </style>              
-    
-          </div>
-      </div>
-        
-    <div class="footer-bottom">
-        <div class="container">
-            <p class="footer-copy allow-copy">
-                © تمامی حقوق این وب‌سایت برای کُدبانو محفوظ است.
-            </p>              
-            <div class="footer-bottom-links">
-                <a href="/terms">قوانین و شرایط استفاده</a>
-                <a href="/privacy">حریم خصوصی</a>
-                <a href="#" class="back-to-top">برگشت به بالا ↑</a>
-            </div>
-        </div>
-    </div>
-</footer>
 </body>
-<script>
-    document.querySelector('.back-to-top').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-</script>    
 </html>
