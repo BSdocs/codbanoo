@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="اعضای اصلی و همکاران کُدبانو؛ نقش‌ها و بیوگرافی کوتاه هر عضو." />
 
-  <link rel="icon" type="image/svg+xml" href="/pics/icons/codbanooICON.svg" />
+  <link rel="icon" type="image/svg+xml" href="codbanooICON.svg" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/styles.css" />
-  <script src="/script.js" defer></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
 
   <style>
     /* ✅ شروع چسبیده به هدر: هیچ فاصله‌ی سفید بالای بخش اول نداشته باشیم */
@@ -276,41 +276,53 @@
     }
     .member-card.small .member-avatar-wrap{ width: 72px; height: 72px; }
     .member-card.small .member-meta .name{ font-size: 1rem; }
+    /* فقط وقتی کارت بازه لینک دیده بشه */
     .member-card.is-open .member-social{
-      display: inline-flex;     /* فقط وقتی باز شد */
-    }
-    .member-panel-inner{
-      position: relative;
-      padding-bottom: 2.6rem; /* جا برای لینک اینستا */
-    }
-    .member-social{
-      position: absolute;
-      bottom: 12px;
-      left: 14px;
-
       display: inline-flex;
+    }
+
+    /* پنل: ستونی می‌کنیم تا لینک همیشه بعد از متن/استیکرها بیاد */
+    .member-panel-inner{
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
+    }
+
+    /* لینک اینستا: دیگه absolute نیست، پس هم‌پوشانی نداریم */
+    .member-social{
+      position: static;
+      align-self: flex-end;     /* در RTL میره سمت چپ */
+      direction: ltr;
+
+      display: none;            /* پیش‌فرض مخفی */
       align-items: center;
       gap: .35rem;
+
       line-height: 1;
       font-size: .82rem;
       color: #2b2b2b;
       text-decoration: none;
-      transform: translateY(-2px);
+
       opacity: .75;
       transition: opacity .2s ease, transform .2s ease;
-      display: none;
-      direction: ltr; 
+      transform: translateY(-1px);
+
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
+
     .member-social img{
       width: 16px;
       height: 16px;
       display: inline-block;
       vertical-align: middle;
     }
+
     .member-social:hover{
       opacity: 1;
-      transform: translateY(-1px);
+      transform: translateY(0);
     }
+
 
     .group-photo{
       min-height: 220px;
@@ -366,8 +378,6 @@
     /* موبایل */
     @media (max-width: 640px){
       .member-social{
-        bottom: 10px;
-        left: 10px;
         font-size: .78rem;
       }
     }
@@ -398,8 +408,8 @@
   <!-- ===== START HEADER (برای جایگزینی راحت) ===== -->
   <header class="site-header">
       <div class="container header-inner">
-          <a href="https://codbanoo.ir/" class="logo" draggable="false">
-              <img src="/pics/icons/codbanooICON.svg" alt="لوگوی کُدبانو" class="logo-icon" draggable="false" />
+          <a href="https://codbanoo.ir" class="logo" draggable="false">
+              <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="logo-icon" draggable="false" />
               <span class="logo-text">کُدبانو</span>
           </a>
           <nav class="main-nav">
@@ -414,17 +424,17 @@
                           <div class="submenu-section">
                               <h4>بر اساس سیستم‌عامل</h4>
                               <ul>
-                                  <li><a href="/courses/window/windows-automation">اسکریپت‌های کاربردی ویندوز</a></li>
-                                  <li><a href="/courses/macOS/mac-automation">خودکارسازی روی مک (macOS)</a></li>
-                                  <li><a href="/courses/linux/linux-automation">ترفندهای ساده در لینوکس</a></li>
+                                  <li><a href="/courses/windows-automation">اسکریپت‌های کاربردی ویندوز</a></li>
+                                  <li><a href="/courses/mac-automation">خودکارسازی روی مک (macOS)</a></li>
+                                  <li><a href="/courses/linux-automation">ترفندهای ساده در لینوکس</a></li>
                               </ul>
                           </div>
 
                           <div class="submenu-section">
                               <h4>زبان‌ها و ابزارها</h4>
                               <ul>
-                                  <li><a href="/courses/python/python-basics">پایتون برای کارهای روزمره</a></li>
-                                  <li><a href="/courses/databases/sql/sql-reports">SQL برای گزارش‌گیری ساده</a></li>
+                                  <li><a href="/courses/python-basics">پایتون برای کارهای روزمره</a></li>
+                                  <li><a href="/courses/sql-reports">SQL برای گزارش‌گیری ساده</a></li>
                                   <li><a href="/courses/web-automation">ابزارهای وب (HTML / Automation)</a></li>
                               </ul>
                           </div>
@@ -473,7 +483,7 @@
                       </div>
                   </li>
 
-                  <li><a href="https://blog.codbanoo.ir/">بلاگ</a></li>
+                  <li><a href="/blog">بلاگ</a></li>
                   <li><a href="/support">پشتیبانی</a></li>
 
                   <li class="has-submenu">
@@ -485,7 +495,7 @@
                       <ul class="submenu">
                           <li><a href="/about/team">درباره تیم کُدبانو</a></li>
                           <li><a href="/about/members">اعضای اصلی و همکاران</a></li>
-                          <li><a href="/about/brand">هویت برند و ارزش‌ها</a></li>
+                          <li><a href="/about/values">هویت برند و ارزش‌ها</a></li>
                           <li><a href="/about/contact">تماس با ما</a></li>
                       </ul>
                   </li>
@@ -514,9 +524,9 @@
               <ul>
                   <li><a href="/courses">دوره‌ها</a></li>
                   <li><a href="/scenarios">سناریوهای واقعی</a></li>
-                  <li><a href="https://blog.codbanoo.ir/">بلاگ</a></li>
+                  <li><a href="/blog">بلاگ</a></li>
                   <li><a href="/support">پشتیبانی</a></li>
-                  <li><a href="/about">درباره‌ما</a></li>
+                  <li><a href="/pricing">درباره‌ما</a></li>
               </ul>
           </nav>
 
@@ -568,7 +578,7 @@
             <div class="member-avatar-wrap">
               <div class="avatar-ring"></div>
               <div class="member-avatar">
-                <img src="/pics/members/ali-rahimi.png" alt="پروفایل علی رحیمی" />
+                <img src="ali-rahimi.png" alt="پروفایل علی رحیمی" />
               </div>
             </div>
           </div>
@@ -602,7 +612,7 @@
             <div class="member-avatar-wrap">
               <div class="avatar-ring"></div>
               <div class="member-avatar">
-                <img src="/pics/members/sohiela-sheykhi.png" alt="پروفایل سهیلا شیخی" />
+                <img src="sohiela-sheykhi.png" alt="پروفایل سهیلا شیخی" />
               </div>
             </div>
 
@@ -642,7 +652,7 @@
                 <div class="member-avatar-wrap">
                   <div class="avatar-ring"></div>
                   <div class="member-avatar">
-                    <img src="/pics/members/mohsen-zamanpoor.png" alt="پروفایل محسن زمانپور" />
+                    <img src="mohsen-zamanpoor.png" alt="پروفایل محسن زمانپور" />
                   </div>
                 </div>
                 <div class="member-meta">
@@ -676,7 +686,7 @@
                 <div class="member-avatar-wrap">
                   <div class="avatar-ring"></div>
                   <div class="member-avatar">
-                    <img src="/pics/members/zahra-zahed.png" alt="پروفایل زهرا زاهد" />
+                    <img src="zahra-zahed.png" alt="پروفایل زهرا زاهد" />
                   </div>
                 </div>
                 <div class="member-meta">
@@ -707,7 +717,7 @@
                 <div class="member-avatar-wrap">
                   <div class="avatar-ring"></div>
                   <div class="member-avatar">
-                    <img src="/pics/members/support.png" alt="پروفایل پشتیبانی" />
+                    <img src="support.png" alt="پروفایل پشتیبانی" />
                   </div>
                 </div>
 
@@ -734,7 +744,7 @@
             
           </div>               
           <div class="group-photo">
-            <img src="/pics/members/workshop.png" alt="عکس دسته‌جمعی اعضا (نمونه)" />
+            <img src="workshop.png" alt="عکس دسته‌جمعی اعضا (نمونه)" />
           
             <div class="group-glass-note">
               <span class="material-icons">groups</span>
@@ -802,8 +812,8 @@
   <footer class="site-footer">
       <div class="container footer-inner">
           <div class="footer-brand">
-              <a href="https://codbanoo.ir/" class="brand">
-                  <img src="/pics/icons/codbanooICON.svg" alt="لوگوی کُدبانو" class="brand-logo" />
+              <a href="" class="brand">
+                  <img src="codbanooICON.svg" alt="لوگوی کُدبانو" class="brand-logo" />
                   <span class="brand-text">
                       <span class="brand-name">کُدبانو</span>
                       <span class="brand-tagline">کدهای کوچک، تغییرهای بزرگ</span>
@@ -819,9 +829,9 @@
               <div>
                   <h4>راهنما</h4>
                   <ul>
-                      <li><a href="/about/team">کُدبانو چطور کار می‌کند؟</a></li>
-                      <li><a href="/support/roadmap">مسیر پیشنهادی یادگیری</a></li>
-                      <li><a href="/support/faq">سؤالات متداول</a></li>
+                      <li><a href="/team">کُدبانو چطور کار می‌کند؟</a></li>
+                      <li><a href="/roadmap">مسیر پیشنهادی یادگیری</a></li>
+                      <li><a href="/faq">سؤالات متداول</a></li>
                   </ul>
               </div>
               <div>
@@ -855,7 +865,7 @@
                 <a href="/about"
                   style="display:inline-flex; justify-content:center; align-items:center; text-decoration:none; background:transparent; padding:0; margin:0 auto;">
 
-                  <img src="/pics/icons/license.png" alt="مجوزها"
+                  <img src="license.png" alt="مجوزها"
                       style="
                         display:block;
                         height:auto;
